@@ -3,9 +3,7 @@ function solve(inputMatrix) {
     inputMatrix.forEach((array, index) => {
         array.forEach((el, idx) => {
             if (idx + 1 < array.length && array[idx] === array[idx + 1]) { numberOfPairs++; }
-            if (index + 1 < inputMatrix.length) {
-                if (inputMatrix[index + 1][idx] === el) { numberOfPairs++; }
-            }
+            if (index + 1 < inputMatrix.length && inputMatrix[index + 1][idx] === el) { numberOfPairs++; }
         });
     });
     console.log(numberOfPairs);
