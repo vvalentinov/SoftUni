@@ -8,5 +8,6 @@ function solve(input) {
     console.log(resultArr.join(' '));
 }
 
+
 solve(['20', '30', '40', '50', '60']);
 solve(['5', '10']);
