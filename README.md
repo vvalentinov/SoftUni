@@ -7,3 +7,4 @@
 | [C# Fundamentals](https://judge.softuni.org/Contests/#!/List/ByCategory/149/CSharp-Fundamentals) |
 | [C# Advanced](https://judge.softuni.org/Contests/#!/List/ByCategory/180/CSharp-Advanced) |
 | [JS Advanced](https://judge.softuni.org/Contests/#!/List/ByCategory/304/JS-Advanced) |
+| [Algorithms Fundamentals with C#](https://judge.softuni.org/Contests#!/List/ByCategory/278/Algorithms-Fundamentals) |
