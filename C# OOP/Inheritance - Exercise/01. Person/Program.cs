@@ -1,0 +1,15 @@
+﻿namespace _01._Person
+{
+    using System;
+
+    public class Program
+    {
+        static void Main(string[] args)
+        {
+            string name = Console.ReadLine();
+            int age = int.Parse(Console.ReadLine());
+            Child child = new Child(name, age);
+            Console.WriteLine(child.ToString());
+        }
+    }
+}
