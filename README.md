@@ -6,5 +6,6 @@
 | [C# Programming Basics](https://judge.softuni.org/Contests/#!/List/ByCategory/245/CSharp-Basics) |
 | [C# Fundamentals](https://judge.softuni.org/Contests/#!/List/ByCategory/149/CSharp-Fundamentals) |
 | [C# Advanced](https://judge.softuni.org/Contests/#!/List/ByCategory/180/CSharp-Advanced) |
+| [C# OOP](https://judge.softuni.org/Contests#!/List/ByCategory/181/CSharp-OOP) |
 | [JS Advanced](https://judge.softuni.org/Contests/#!/List/ByCategory/304/JS-Advanced) |
 | [Algorithms Fundamentals with C#](https://judge.softuni.org/Contests#!/List/ByCategory/278/Algorithms-Fundamentals) |
