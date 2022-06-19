@@ -1,119 +1,124 @@
 function solve() {
-    let recipientNameInputElement = document.getElementById('recipientName');
-    let titleInputElement = document.getElementById('title');
-    let messageTextareaElement = document.getElementById('message');
+  let recipientNameInputElement = document.getElementById("recipientName");
+  let titleInputElement = document.getElementById("title");
+  let messageTextareaElement = document.getElementById("message");
 
-    function clearInputs() {
-        recipientNameInputElement.value = '';
-        titleInputElement.value = '';
-        messageTextareaElement.value = '';
+  function clearInputs() {
+    recipientNameInputElement.value = "";
+    titleInputElement.value = "";
+    messageTextareaElement.value = "";
+  }
+
+  const addToListButton = document.getElementById("add");
+  const resetButton = document.getElementById("reset");
+
+  resetButton.addEventListener("click", (e) => {
+    e.preventDefault();
+    clearInputs();
+  });
+
+  addToListButton.addEventListener("click", (e) => {
+    e.preventDefault();
+
+    if (
+      recipientNameInputElement.value == "" ||
+      titleInputElement.value == "" ||
+      messageTextareaElement.value == ""
+    ) {
+      clearInputs();
+      return;
     }
 
-    const addToListButton = document.getElementById('add');
-    const resetButton = document.getElementById('reset');
+    let recipient = recipientNameInputElement.value;
+    let title = titleInputElement.value;
+    let message = messageTextareaElement.value;
 
-    resetButton.addEventListener('click', (e) => {
-        e.preventDefault();
-        clearInputs();
-    })
+    function appendDeletedMail(element) {
+      element.remove();
+      let deleteListUlElement =
+        document.getElementsByClassName("delete-list")[0];
+      let deletedMailLiElement = document.createElement("li");
 
-    addToListButton.addEventListener('click', (e) => {
-        e.preventDefault();
+      let deletedMailSpanRecipientElement = document.createElement("span");
+      deletedMailSpanRecipientElement.textContent = `To: ${recipient}`;
 
-        if (recipientNameInputElement.value == '' ||
-            titleInputElement.value == '' ||
-            messageTextareaElement.value == '') {
-            clearInputs();
-            return;
-        }
+      let deletedMailSpanTitleElement = document.createElement("span");
+      deletedMailSpanTitleElement.textContent = `Title: ${title}`;
 
-        let recipient = recipientNameInputElement.value;
-        let title = titleInputElement.value;
-        let message = messageTextareaElement.value;
+      deletedMailLiElement.appendChild(deletedMailSpanRecipientElement);
+      deletedMailLiElement.appendChild(deletedMailSpanTitleElement);
+      deleteListUlElement.appendChild(deletedMailLiElement);
+    }
 
-        function appendDeletedMail(element) {
-            element.remove();
-            let deleteListUlElement = document.getElementsByClassName('delete-list')[0];
-            let deletedMailLiElement = document.createElement('li');
+    clearInputs();
 
-            let deletedMailSpanRecipientElement = document.createElement('span');
-            deletedMailSpanRecipientElement.textContent = `To: ${recipient}`;
+    let listULElement = document.getElementById("list");
 
-            let deletedMailSpanTitleElement = document.createElement('span');
-            deletedMailSpanTitleElement.textContent = `Title: ${title}`;
+    let liElement = document.createElement("li");
 
-            deletedMailLiElement.appendChild(deletedMailSpanRecipientElement);
-            deletedMailLiElement.appendChild(deletedMailSpanTitleElement);
-            deleteListUlElement.appendChild(deletedMailLiElement);
-        }
+    let h4TitleElement = document.createElement("h4");
+    h4TitleElement.textContent = `Title: ${title}`;
 
-        clearInputs();
+    let h4RecipientElement = document.createElement("h4");
+    h4RecipientElement.textContent = `Recipient Name: ${recipient}`;
 
-        let listULElement = document.getElementById('list');
+    let spanElement = document.createElement("span");
+    spanElement.textContent = message;
 
-        let liElement = document.createElement('li');
+    let listActionDivElement = document.createElement("div");
+    listActionDivElement.setAttribute("id", "list-action");
 
-        let h4TitleElement = document.createElement('h4');
-        h4TitleElement.textContent = `Title: ${title}`;
+    let sendButton = document.createElement("button");
+    sendButton.textContent = "Send";
+    sendButton.setAttribute("id", "send");
 
-        let h4RecipientElement = document.createElement('h4');
-        h4RecipientElement.textContent = `Recipient Name: ${recipient}`;
+    sendButton.addEventListener("click", (e) => {
+      liElement.remove();
 
-        let spanElement = document.createElement('span');
-        spanElement.textContent = message;
+      let sentMailsULElement = document.getElementsByClassName("sent-list")[0];
 
-        let listActionDivElement = document.createElement('div');
-        listActionDivElement.setAttribute('id', 'list-action');
+      let sentMailLiElement = document.createElement("li");
 
-        let sendButton = document.createElement('button');
-        sendButton.textContent = 'Send';
-        sendButton.setAttribute('id', 'send');
+      let recipientSpanSentMailElement = document.createElement("span");
+      recipientSpanSentMailElement.textContent = `To: ${recipient}`;
 
-        sendButton.addEventListener('click', (e) => {
-            liElement.remove();
+      let titleSpanSentMailElement = document.createElement("span");
+      titleSpanSentMailElement.textContent = `Title: ${title}`;
 
-            let sentMailsULElement = document.getElementsByClassName('sent-list')[0];
+      let divSentMailElement = document.createElement("div");
+      divSentMailElement.classList.add("btn");
 
-            let sentMailLiElement = document.createElement('li');
+      let deleteSentMailButton = document.createElement("button");
+      deleteSentMailButton.textContent = "Delete";
+      deleteSentMailButton.classList.add("delete");
 
-            let recipientSpanSentMailElement = document.createElement('span');
-            recipientSpanSentMailElement.textContent = `To: ${recipient}`;
+      deleteSentMailButton.addEventListener("click", () =>
+        appendDeletedMail(sentMailLiElement)
+      );
 
-            let titleSpanSentMailElement = document.createElement('span');
-            titleSpanSentMailElement.textContent = `Title: ${title}`;
+      divSentMailElement.appendChild(deleteSentMailButton);
 
-            let divSentMailElement = document.createElement('div');
-            divSentMailElement.classList.add('btn');
-
-            let deleteSentMailButton = document.createElement('button');
-            deleteSentMailButton.textContent = 'Delete';
-            deleteSentMailButton.classList.add('delete');
-
-            deleteSentMailButton.addEventListener('click', () => appendDeletedMail(sentMailLiElement));
-
-            divSentMailElement.appendChild(deleteSentMailButton);
-
-            sentMailLiElement.appendChild(recipientSpanSentMailElement);
-            sentMailLiElement.appendChild(titleSpanSentMailElement);
-            sentMailLiElement.appendChild(divSentMailElement);
-            sentMailsULElement.appendChild(sentMailLiElement);
-        });
-
-        let deleteButton = document.createElement('button');
-        deleteButton.textContent = 'Delete';
-        deleteButton.setAttribute('id', 'delete');
-
-        deleteButton.addEventListener('click', () => appendDeletedMail(liElement));
-
-        listActionDivElement.appendChild(sendButton);
-        listActionDivElement.appendChild(deleteButton);
-
-        liElement.appendChild(h4TitleElement);
-        liElement.appendChild(h4RecipientElement);
-        liElement.appendChild(spanElement);
-        liElement.appendChild(listActionDivElement);
-
-        listULElement.appendChild(liElement);
+      sentMailLiElement.appendChild(recipientSpanSentMailElement);
+      sentMailLiElement.appendChild(titleSpanSentMailElement);
+      sentMailLiElement.appendChild(divSentMailElement);
+      sentMailsULElement.appendChild(sentMailLiElement);
     });
+
+    let deleteButton = document.createElement("button");
+    deleteButton.textContent = "Delete";
+    deleteButton.setAttribute("id", "delete");
+
+    deleteButton.addEventListener("click", () => appendDeletedMail(liElement));
+
+    listActionDivElement.appendChild(sendButton);
+    listActionDivElement.appendChild(deleteButton);
+
+    liElement.appendChild(h4TitleElement);
+    liElement.appendChild(h4RecipientElement);
+    liElement.appendChild(spanElement);
+    liElement.appendChild(listActionDivElement);
+
+    listULElement.appendChild(liElement);
+  });
 }
-solve()
+solve();
