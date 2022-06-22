@@ -8,4 +8,5 @@
 | [C# Advanced](https://judge.softuni.org/Contests/#!/List/ByCategory/180/CSharp-Advanced) |
 | [C# OOP](https://judge.softuni.org/Contests#!/List/ByCategory/181/CSharp-OOP) |
 | [JS Advanced](https://judge.softuni.org/Contests/#!/List/ByCategory/304/JS-Advanced) |
+| [MS SQL](https://judge.softuni.org/Contests/#!/List/ByCategory/63/CSharp-Databases-Basics) |
 | [Algorithms Fundamentals with C#](https://judge.softuni.org/Contests#!/List/ByCategory/278/Algorithms-Fundamentals) |
