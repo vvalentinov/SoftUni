@@ -1,0 +1,3 @@
+SELECT * FROM Towns
+WHERE [NAME] LIKE '[^RBD]%'
+ORDER BY [Name]
