@@ -18,6 +18,24 @@
             Console.WriteLine(GetBooksByAgeRestriction(db, command));
         }
 
+        public static string GetBooksByAuthor(BookShopContext context, string input)
+        {
+            var books = context.Books
+                               .Where(x => x.Author.LastName.ToLower().StartsWith(input.ToLower()))
+                               .Select(x => new { x.Title, x.Author.FirstName, x.Author.LastName, x.BookId })
+                               .OrderBy(x => x.BookId)
+                               .ToList();
+
+            StringBuilder builder = new StringBuilder();
+
+            foreach (var book in books)
+            {
+                builder.AppendLine($"{book.Title} ({book.FirstName} {book.LastName})");
+            }
+
+            return builder.ToString().TrimEnd();
+        }
+
         public static string GetBookTitlesContaining(BookShopContext context, string input)
         {
             var titles = context.Books
