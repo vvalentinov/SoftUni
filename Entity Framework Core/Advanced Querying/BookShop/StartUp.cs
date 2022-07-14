@@ -17,6 +17,24 @@
             Console.WriteLine(GetBooksByAgeRestriction(db, command));
         }
 
+        public static string GetBooksNotReleasedIn(BookShopContext context, int year)
+        {
+            var books = context.Books
+                .Where(x => x.ReleaseDate.Value.Year != year)
+                .Select(x => new { x.Title, x.BookId })
+                .OrderBy(x => x.BookId)
+                .ToList();
+
+            StringBuilder builder = new StringBuilder();
+
+            foreach (var book in books)
+            {
+                builder.AppendLine(book.Title);
+            }
+
+            return builder.ToString().TrimEnd();
+        }
+
         public static string GetBooksByPrice(BookShopContext context)
         {
             var books = context.Books
