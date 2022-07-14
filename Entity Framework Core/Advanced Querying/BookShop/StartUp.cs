@@ -18,6 +18,11 @@
             Console.WriteLine(GetBooksByAgeRestriction(db, command));
         }
 
+        public static int CountBooks(BookShopContext context, int lengthCheck)
+        {
+            return context.Books.Where(x => x.Title.Length > lengthCheck).Count();
+        }
+
         public static string GetBooksByAuthor(BookShopContext context, string input)
         {
             var books = context.Books
