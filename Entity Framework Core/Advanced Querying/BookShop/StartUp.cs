@@ -18,6 +18,27 @@
             Console.WriteLine(GetBooksByAgeRestriction(db, command));
         }
 
+        public static string GetTotalProfitByCategory(BookShopContext context)
+        {
+            var categories = context.Categories
+                .Select(x => new
+                {
+                    x.Name,
+                    TotalProfit = x.CategoryBooks.Sum(b => b.Book.Price * b.Book.Copies)
+                })
+                .OrderByDescending(x => x.TotalProfit)
+                .ToList();
+
+            StringBuilder builder = new StringBuilder();
+
+            foreach (var category in categories)
+            {
+                builder.AppendLine($"{category.Name} ${category.TotalProfit:f2}");
+            }
+
+            return builder.ToString().TrimEnd();
+        }
+
         public static string CountCopiesByAuthor(BookShopContext context)
         {
             var authors = context.Authors
