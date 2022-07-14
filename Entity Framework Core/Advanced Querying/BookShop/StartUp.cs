@@ -18,6 +18,18 @@
             Console.WriteLine(GetBooksByAgeRestriction(db, command));
         }
 
+        public static void IncreasePrices(BookShopContext context)
+        {
+            var books = context.Books.Where(x => x.ReleaseDate.Value.Year < 2010).ToList();
+
+            foreach (var book in books)
+            {
+                book.Price += 5;
+            }
+
+            context.SaveChanges();
+        }
+
         public static string GetMostRecentBooks(BookShopContext context)
         {
             var categories = context.Categories
