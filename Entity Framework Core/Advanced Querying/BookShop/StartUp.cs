@@ -17,6 +17,24 @@
             Console.WriteLine(GetBooksByAgeRestriction(db, command));
         }
 
+        public static string GetBooksByPrice(BookShopContext context)
+        {
+            var books = context.Books
+                               .Where(x => x.Price > 40)
+                               .Select(x => new { x.Title, x.Price })
+                               .OrderByDescending(x => x.Price)
+                               .ToList();
+
+            StringBuilder builder = new StringBuilder();
+
+            foreach (var book in books)
+            {
+                builder.AppendLine($"{book.Title} - ${book.Price:f2}");
+            }
+
+            return builder.ToString().TrimEnd();
+        }
+
         public static string GetGoldenBooks(BookShopContext context)
         {
             EditionType editionType = Enum.Parse<EditionType>("Gold", false);
