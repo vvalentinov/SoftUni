@@ -18,6 +18,17 @@
             Console.WriteLine(GetBooksByAgeRestriction(db, command));
         }
 
+        public static int RemoveBooks(BookShopContext context)
+        {
+            var books = context.Books.Where(x => x.Copies < 4200).ToList();
+
+            context.Books.RemoveRange(books);
+
+            context.SaveChanges();
+
+            return books.Count();
+        }
+
         public static void IncreasePrices(BookShopContext context)
         {
             var books = context.Books.Where(x => x.ReleaseDate.Value.Year < 2010).ToList();
