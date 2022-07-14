@@ -18,6 +18,28 @@
             Console.WriteLine(GetBooksByAgeRestriction(db, command));
         }
 
+        public static string CountCopiesByAuthor(BookShopContext context)
+        {
+            var authors = context.Authors
+                                .Select(x => new
+                                {
+                                    x.FirstName,
+                                    x.LastName,
+                                    TotalCopies = x.Books.Sum(c => c.Copies)
+                                })
+                                .OrderByDescending(x => x.TotalCopies)
+                                .ToList();
+
+            StringBuilder builder = new StringBuilder();
+
+            foreach (var author in authors)
+            {
+                builder.AppendLine($"{author.FirstName} {author.LastName} - {author.TotalCopies}");
+            }
+
+            return builder.ToString().TrimEnd();
+        }
+
         public static int CountBooks(BookShopContext context, int lengthCheck)
         {
             return context.Books.Where(x => x.Title.Length > lengthCheck).Count();
