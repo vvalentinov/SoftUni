@@ -18,6 +18,24 @@
             Console.WriteLine(GetBooksByAgeRestriction(db, command));
         }
 
+        public static string GetBooksReleasedBefore(BookShopContext context, string date)
+        {
+            var books = context.Books.
+                Where(x => x.ReleaseDate.Value < DateTime.ParseExact(date, "dd-MM-yyyy", System.Globalization.CultureInfo.InvariantCulture))
+                .Select(x => new { x.Title, EditionType = x.EditionType.ToString(), x.Price, x.ReleaseDate })
+                .OrderByDescending(x => x.ReleaseDate)
+                .ToList();
+
+            StringBuilder builder = new StringBuilder();
+
+            foreach (var book in books)
+            {
+                builder.AppendLine($"{book.Title} - {book.EditionType} - ${book.Price:f2}");
+            }
+
+            return builder.ToString().TrimEnd();
+        }
+
         public static string GetBooksByCategory(BookShopContext context, string input)
         {
             var categories = input.Split(' ', StringSplitOptions.RemoveEmptyEntries).Select(x => x.ToLower()).ToArray();
