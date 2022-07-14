@@ -18,6 +18,36 @@
             Console.WriteLine(GetBooksByAgeRestriction(db, command));
         }
 
+        public static string GetMostRecentBooks(BookShopContext context)
+        {
+            var categories = context.Categories
+                .Select(x => new
+                {
+                    x.Name,
+                    Books = x.CategoryBooks
+                            .Select(z => new { z.Book.Title, z.Book.ReleaseDate })
+                            .OrderByDescending(z => z.ReleaseDate)
+                            .Take(3)
+                            .ToList()
+                })
+                .OrderBy(x => x.Name)
+                .ToList();
+
+            StringBuilder builder = new StringBuilder();
+
+            foreach (var category in categories)
+            {
+                builder.AppendLine($"--{category.Name}");
+
+                foreach (var book in category.Books)
+                {
+                    builder.AppendLine($"{book.Title} ({book.ReleaseDate.Value.Year})");
+                }
+            }
+
+            return builder.ToString().TrimEnd();
+        }
+
         public static string GetTotalProfitByCategory(BookShopContext context)
         {
             var categories = context.Categories
