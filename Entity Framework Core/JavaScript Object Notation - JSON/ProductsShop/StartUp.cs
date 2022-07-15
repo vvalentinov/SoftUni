@@ -1,6 +1,7 @@
 ﻿namespace ProductsShop
 {
     using AutoMapper;
+    using Microsoft.EntityFrameworkCore;
     using Newtonsoft.Json;
     using ProducstShop.DataTransferDto;
     using ProductsShop.Data;
@@ -24,6 +25,41 @@
             string result = ImportUsers(context, users);
             Console.WriteLine(result);
             Console.WriteLine($"{context.Users.Count()}");
+        }
+
+        public static string GetUsersWithProducts(ProductShopContext context)
+        {
+            var users = context.Users
+                                .Include(x => x.ProductsSold)
+                                .ToList()
+                                .Where(x => x.ProductsSold.Any(p => p.BuyerId != null))
+                                .Select(x => new
+                                {
+                                    firstName = x.FirstName,
+                                    lastName = x.LastName,
+                                    age = x.Age,
+                                    soldProducts = new
+                                    {
+                                        count = x.ProductsSold.Where(u => u.BuyerId != null).Count(),
+                                        products = x.ProductsSold.Where(u => u.BuyerId != null).Select(p => new
+                                        {
+                                            name = p.Name,
+                                            price = p.Price
+                                        })
+                                    }
+                                }).OrderByDescending(x => x.soldProducts.count).ToList();
+
+            JsonSerializerSettings settings = new JsonSerializerSettings() { NullValueHandling = NullValueHandling.Ignore };
+
+            var resultObject = new
+            {
+                usersCount = users.Count(),
+                users = users
+            };
+
+            var json = JsonConvert.SerializeObject(resultObject, Formatting.Indented, settings);
+
+            return json;
         }
 
         public static string GetCategoriesByProductsCount(ProductShopContext context)
