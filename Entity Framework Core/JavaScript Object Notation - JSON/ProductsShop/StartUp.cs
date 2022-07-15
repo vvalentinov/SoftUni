@@ -26,6 +26,22 @@
             Console.WriteLine($"{context.Users.Count()}");
         }
 
+        public static string ImportCategoryProducts(ProductShopContext context, string inputJson)
+        {
+            InitializeAutomapper();
+
+            IEnumerable<CategoryProductDto> categoriesProductsDto = JsonConvert.DeserializeObject<IEnumerable<CategoryProductDto>>(inputJson);
+
+            IEnumerable<CategoryProduct> categoriesProducts = mapper.Map<IEnumerable<CategoryProduct>>(categoriesProductsDto);
+
+            context.CategoryProducts.AddRange(categoriesProducts);
+
+            context.SaveChanges();
+
+            return $"Successfully imported {categoriesProducts.Count()}";
+        }
+
+
         public static string ImportCategories(ProductShopContext context, string inputJson)
         {
             InitializeAutomapper();
