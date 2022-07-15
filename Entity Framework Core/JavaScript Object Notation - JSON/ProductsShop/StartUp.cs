@@ -26,6 +26,31 @@
             Console.WriteLine($"{context.Users.Count()}");
         }
 
+        public static string GetSoldProducts(ProductShopContext context)
+        {
+            var users = context.Users
+                               .Where(x => x.ProductsSold.Any(p => p.BuyerId != null))
+                               .Select(x => new
+                               {
+                                   firstName = x.FirstName,
+                                   lastName = x.LastName,
+                                   soldProducts = x.ProductsSold.Where(p => p.BuyerId != null).Select(p => new
+                                   {
+                                       name = p.Name,
+                                       price = p.Price,
+                                       buyerFirstName = p.Buyer.FirstName,
+                                       buyerLastName = p.Buyer.LastName
+                                   })
+                               })
+                               .OrderBy(x => x.lastName)
+                               .ThenBy(x => x.firstName)
+                               .ToList();
+
+            string result = JsonConvert.SerializeObject(users, Formatting.Indented);
+
+            return result;
+        }
+
         public static string GetProductsInRange(ProductShopContext context)
         {
             var products = context.Products
