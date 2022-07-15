@@ -26,6 +26,24 @@
             Console.WriteLine($"{context.Users.Count()}");
         }
 
+        public static string GetCategoriesByProductsCount(ProductShopContext context)
+        {
+            var categories = context.Categories
+                                    .OrderByDescending(x => x.CategoryProducts.Count)
+                                    .Select(x => new
+                                    {
+                                        category = x.Name,
+                                        productsCount = x.CategoryProducts.Count,
+                                        averagePrice = $"{x.CategoryProducts.Sum(p => p.Product.Price) / x.CategoryProducts.Count:f2}",
+                                        totalRevenue = $"{x.CategoryProducts.Sum(p => p.Product.Price):f2}"
+                                    })
+                                    .ToList();
+
+
+            string json = JsonConvert.SerializeObject(categories, Formatting.Indented);
+            return json;
+        }
+
         public static string GetSoldProducts(ProductShopContext context)
         {
             var users = context.Users
