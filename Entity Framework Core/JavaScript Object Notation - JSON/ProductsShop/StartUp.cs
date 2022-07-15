@@ -2,6 +2,7 @@
 {
     using AutoMapper;
     using Newtonsoft.Json;
+    using ProducstShop.DataTransferDto;
     using ProductsShop.Data;
     using ProductsShop.DataTransferDto;
     using ProductsShop.Models;
@@ -25,14 +26,18 @@
             Console.WriteLine($"{context.Users.Count()}");
         }
 
-        private static void InitializeAutomapper()
+        public static string ImportProducts(ProductShopContext context, string inputJson)
         {
-            MapperConfiguration config = new MapperConfiguration(cfg =>
-            {
-                cfg.AddProfile<ProductShopProfile>();
-            });
+            InitializeAutomapper();
 
-            mapper = config.CreateMapper();
+            IEnumerable<ProductDto> productsDto = JsonConvert.DeserializeObject<IEnumerable<ProductDto>>(inputJson);
+
+            IEnumerable<Product> products = mapper.Map<IEnumerable<Product>>(productsDto);
+
+            context.Products.AddRange(products);
+            context.SaveChanges();
+
+            return $"Successfully imported {products.Count()}";
         }
 
         public static string ImportUsers(ProductShopContext context, string inputJson)
@@ -46,6 +51,16 @@
             context.SaveChanges();
 
             return $"Successfully imported {users.Count()}";
+        }
+
+        private static void InitializeAutomapper()
+        {
+            MapperConfiguration config = new MapperConfiguration(cfg =>
+            {
+                cfg.AddProfile<ProductShopProfile>();
+            });
+
+            mapper = config.CreateMapper();
         }
     }
 }
