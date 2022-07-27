@@ -18,6 +18,24 @@
             Console.WriteLine(ImportSuppliers(context, suppliers));
         }
 
+        public static string GetOrderedCustomers(CarDealerContext context)
+        {
+            var customers = context.Customers
+                                   .OrderBy(x => x.BirthDate)
+                                   .ThenBy(x => x.IsYoungDriver)
+                                   .Select(x => new
+                                   {
+                                       Name = x.Name,
+                                       BirthDate = x.BirthDate.ToString("dd/MM/yyyy"),
+                                       IsYoungDriver = x.IsYoungDriver
+                                   })
+                                   .ToList();
+
+            string json = JsonConvert.SerializeObject(customers, Formatting.Indented);
+
+            return json;
+        }
+
         public static string ImportSales(CarDealerContext context, string inputJson)
         {
             // InitializeMapper();
