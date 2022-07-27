@@ -18,6 +18,38 @@
             Console.WriteLine(ImportSuppliers(context, suppliers));
         }
 
+        public static string ImportCars(CarDealerContext context, string inputJson)
+        {
+            // InitializeMapper();
+
+            IEnumerable<CarDto> carDtos = JsonConvert.DeserializeObject<IEnumerable<CarDto>>(inputJson);
+
+            List<Car> cars = new List<Car>();
+
+            foreach (var car in carDtos)
+            {
+                var currentCar = new Car()
+                {
+                    Make = car.Make,
+                    Model = car.Model,
+                    TravelledDistance = car.TravelledDistance
+                };
+
+                foreach (var part in car?.PartsId.Distinct())
+                {
+                    currentCar.PartCars.Add(new PartCar() { PartId = part });
+                }
+
+                cars.Add(currentCar);
+            }
+
+            context.Cars.AddRange(cars);
+
+            context.SaveChanges();
+
+            return $"Successfully imported {cars.Count()}.";
+        }
+
         public static string ImportParts(CarDealerContext context, string inputJson)
         {
             // InitializeMapper();
