@@ -18,6 +18,30 @@
             Console.WriteLine(ImportSuppliers(context, suppliers));
         }
 
+        public static string GetSalesWithAppliedDiscount(CarDealerContext context)
+        {
+            var sales = context.Sales
+                .Take(10)
+                .Select(s => new
+                {
+                    car = new
+                    {
+                        Make = s.Car.Make,
+                        Model = s.Car.Model,
+                        TravelledDistance = s.Car.TravelledDistance
+                    },
+                    customerName = s.Customer.Name,
+                    Discount = $"{s.Discount:F2}",
+                    price = $"{s.Car.PartCars.Sum(pc => pc.Part.Price):F2}",
+                    priceWithDiscount = $"{s.Car.PartCars.Sum(pc => pc.Part.Price) * (1 - (s.Discount / 100)):F2}",
+                })
+                .ToArray();
+
+            var jsonFile = JsonConvert.SerializeObject(sales, Formatting.Indented);
+
+            return jsonFile;
+        }
+
         public static string GetTotalSalesByCustomer(CarDealerContext context)
         {
             var customers = context.Customers
