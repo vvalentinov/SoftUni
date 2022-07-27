@@ -18,6 +18,21 @@
             Console.WriteLine(ImportSuppliers(context, suppliers));
         }
 
+        public static string ImportParts(CarDealerContext context, string inputJson)
+        {
+            // InitializeMapper();
+
+            List<PartDto> partDtos = JsonConvert.DeserializeObject<List<PartDto>>(inputJson);
+
+            IEnumerable<Part> parts = mapper.Map<IEnumerable<Part>>(partDtos.Where(x => context.Suppliers.Any(s => s.Id == x.SupplierId)));
+
+            context.Parts.AddRange(parts);
+
+            context.SaveChanges();
+
+            return $"Successfully imported {parts.Count()}.";
+        }
+
         public static string ImportSuppliers(CarDealerContext context, string inputJson)
         {
             // InitializeMapper();
