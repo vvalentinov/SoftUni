@@ -18,6 +18,20 @@
             Console.WriteLine(ImportSuppliers(context, suppliers));
         }
 
+        public static string ImportSales(CarDealerContext context, string inputJson)
+        {
+            // InitializeMapper();
+            var salesDtos = JsonConvert.DeserializeObject<IEnumerable<SaleDto>>(inputJson);
+
+            var sales = mapper.Map<IEnumerable<Sale>>(salesDtos);
+
+            context.Sales.AddRange(sales);
+
+            context.SaveChanges();
+
+            return $"Successfully imported {sales.Count()}.";
+        }
+
         public static string ImportCustomers(CarDealerContext context, string inputJson)
         {
             // InitializeMapper();
