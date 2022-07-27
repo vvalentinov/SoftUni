@@ -18,6 +18,24 @@
             Console.WriteLine(ImportSuppliers(context, suppliers));
         }
 
+        public static string GetTotalSalesByCustomer(CarDealerContext context)
+        {
+            var customers = context.Customers
+                                   .Where(x => x.Sales.Count() >= 1)
+                                   .Select(x => new
+                                   {
+                                       fullName = x.Name,
+                                       boughtCars = x.Sales.Count(),
+                                       spentMoney = x.Sales.Sum(p => p.Car.PartCars.Sum(s => s.Part.Price))
+                                   }).ToList();
+
+
+
+            string json = JsonConvert.SerializeObject(customers, Formatting.Indented);
+
+            return json;
+        }
+
         public static string GetCarsWithTheirListOfParts(CarDealerContext context)
         {
             var cars = context.Cars
