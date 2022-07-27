@@ -18,6 +18,22 @@
             Console.WriteLine(ImportSuppliers(context, suppliers));
         }
 
+        public static string GetLocalSuppliers(CarDealerContext context)
+        {
+            var suppliers = context.Suppliers
+                                   .Where(x => x.IsImporter == false)
+                                   .Select(x => new
+                                   {
+                                       Id = x.Id,
+                                       Name = x.Name,
+                                       PartsCount = x.Parts.Count()
+                                   }).ToList();
+
+            string json = JsonConvert.SerializeObject(suppliers, Formatting.Indented);
+
+            return json;
+        }
+
         public static string GetCarsFromMakeToyota(CarDealerContext context)
         {
             var cars = context.Cars
