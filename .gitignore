@@ -2,3 +2,7 @@ bin
 obj
 .suo
 .vs/
+*.png
+*.jpg
+*.txt
+*.zip
