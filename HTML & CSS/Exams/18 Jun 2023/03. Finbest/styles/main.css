@@ -1,0 +1,373 @@
+@import url(reset.css);
+@import url(https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css);
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap');
+
+:root {
+  --clr-primary: #ade2df;
+  --clr-black: black;
+  --clr-white: white;
+  --clr-stat-border-color: #dddddd;
+  --clr-lightgrey: #f3f5fa;
+}
+
+body {
+  font-family: 'Inter';
+}
+
+/* Navigation */
+header nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  /* border: solid 1px black; */
+  font-size: 1.1rem;
+}
+
+header nav ul {
+  display: flex;
+  align-items: center;
+}
+
+header nav ul li {
+  margin: 2rem 0;
+}
+
+header nav ul:first-child {
+  margin-left: 7rem;
+  gap: 5rem;
+}
+
+header nav ul:last-child {
+  margin-right: 7rem;
+  gap: 3rem;
+}
+
+header nav ul:last-child li:last-child {
+  background-color: var(--clr-primary);
+  padding: 1rem 2rem;
+  border-radius: 10px;
+  cursor: pointer;
+}
+
+nav ul li a {
+  text-decoration: none;
+  color: black;
+}
+
+/* Hero Section */
+.hero {
+  background-color: var(--clr-primary);
+  text-align: center;
+  padding: 5rem 0;
+}
+
+.hero h1 {
+  font-size: 4rem;
+  font-weight: 600;
+}
+
+.hero p {
+  margin: 2rem 0;
+  font-size: 1.2rem;
+  font-weight: 400;
+}
+
+.ios-btn,
+.android-btn {
+  padding: 1.5rem 2rem;
+  background-color: var(--clr-black);
+  color: var(--clr-white);
+  border: none;
+  border-radius: 10px;
+  margin: 0 0.7rem;
+  cursor: pointer;
+}
+
+.ios-btn i,
+.android-btn i {
+  margin-right: 0.5rem;
+}
+
+/* Stats Section */
+.stats {
+  display: flex;
+  justify-content: center;
+  text-align: center;
+  padding: 5rem 10rem;
+}
+
+.stats div {
+  border-left: solid 1px black;
+  border-right: solid 1px black;
+  border-color: var(--clr-stat-border-color);
+  height: 15rem;
+}
+
+.stats div h2 {
+  font-size: 2.5rem;
+  font-weight: 500;
+}
+
+.stats div p {
+  font-size: 1.1rem;
+  padding: 0 2rem;
+}
+
+/* Features Section */
+.features {
+  display: flex;
+  justify-content: center;
+  background-color: var(--clr-primary);
+}
+
+.features .img-container {
+  background-image: url(../images/group\ 1277.svg);
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
+  height: 35rem;
+  border: dashed 2px black;
+  border-color: #98b8b6;
+  flex-basis: 25%;
+  margin-left: 15rem;
+}
+
+.features .features-container {
+  flex-basis: 75%;
+  padding: 5.5rem 7rem;
+}
+
+.features .features-container h2 {
+  font-size: 2.8rem;
+  font-weight: 600;
+  padding-right: 3.7rem;
+}
+
+.features .features-container h3 {
+  margin-top: 1rem;
+  margin-bottom: 0.5rem;
+}
+
+.features .features-container p {
+  padding-right: 12rem;
+}
+
+.features .features-container p:nth-child(5) {
+  margin-bottom: 2rem;
+}
+
+.features .features-container a {
+  margin-top: 5rem;
+  text-decoration: none;
+  color: var(--clr-black);
+  border-bottom: solid 2px black;
+  padding-bottom: 0.3rem;
+}
+
+.features .features-container a i {
+  margin-left: 0.5rem;
+}
+
+/* Pricing Section */
+.pricing {
+  /* height: 20rem; */
+  background-color: var(--clr-lightgrey);
+  padding: 3.5rem 0;
+}
+
+.pricing .headers-container {
+  text-align: center;
+}
+
+.pricing h4 {
+  background-color: var(--clr-primary);
+  display: inline;
+  padding: 0.5rem 1rem;
+  border-radius: 10px;
+}
+
+.pricing h2 {
+  margin-top: 2rem;
+  font-size: 3rem;
+  font-weight: 500;
+}
+
+.standard {
+  border-top-left-radius: 20px;
+  border-bottom-left-radius: 20px;
+}
+
+.expand {
+  border-top-right-radius: 20px;
+  border-bottom-right-radius: 20px;
+}
+
+.standard,
+.plus,
+.premium {
+  grid-area: standard;
+  background-color: white;
+  padding: 2rem;
+  border-right: solid 1px black;
+}
+
+.standard h3,
+.plus h3,
+.premium h3 {
+  text-align: center;
+  font-size: 1.3rem;
+}
+.standard p,
+.plus p,
+.premium p {
+  font-size: 1rem;
+}
+
+.standard span {
+  font-size: 3rem;
+  font-weight: 500;
+}
+
+.plus span:nth-child(3) {
+  font-size: 3rem;
+}
+
+.premium span:nth-child(3) {
+  font-size: 3rem;
+}
+
+.standard ul,
+.plus ul,
+.premium ul {
+  margin: 2rem 0;
+}
+
+.standard ul li,
+.plus ul li,
+.premium ul li,
+.expand ul li {
+  margin: 0.5rem 0;
+}
+
+.standard div,
+.plus div,
+.premium div {
+  display: flex;
+  justify-content: center;
+}
+
+.standard div button,
+.plus div button,
+.premium div button {
+  width: 100%;
+  padding: 1rem;
+  background-color: var(--clr-primary);
+  border: none;
+  border-radius: 10px;
+  font-weight: 500;
+  cursor: pointer;
+}
+
+.standard ul li i,
+.plus ul li i,
+.premium ul li i,
+.expand ul li i {
+  margin-right: 0.5rem;
+}
+
+.plans-container .plus {
+  grid-area: plus;
+  background-color: white;
+}
+
+.plans-container .plus h3 {
+  text-align: center;
+}
+
+.plans-container .premium {
+  grid-area: premium;
+  background-color: white;
+}
+
+.plans-container .premium h3 {
+  text-align: center;
+}
+
+.plans-container .expand {
+  grid-area: expand;
+  background-color: var(--clr-primary);
+  padding: 3rem 0;
+  padding-left: 2rem;
+  padding-right: 1rem;
+}
+
+.expand h3 {
+  text-align: center;
+}
+
+.expand p {
+  font-size: 1.2rem;
+  font-weight: 600;
+  margin-bottom: 2rem;
+}
+
+.expand button {
+  width: 100%;
+  margin-top: 9.2rem;
+  background-color: var(--clr-black);
+  color: var(--clr-white);
+  border: none;
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+  border-radius: 10px;
+  cursor: pointer;
+}
+
+.plans-container {
+  margin-top: 5rem;
+  display: grid;
+  grid-template-areas: 'standard plus premium expand expand';
+}
+
+/* Footer Section */
+.get-started {
+  text-align: center;
+  padding: 5rem 0;
+  background-color: var(--clr-primary);
+}
+
+.get-started h2 {
+  font-size: 4.5rem;
+  padding: 0 25rem;
+  font-weight: 600;
+}
+
+.get-started p {
+  font-size: 1.3rem;
+  padding: 0 28rem;
+}
+
+.get-started div {
+  margin-top: 2rem;
+}
+
+.copy-right {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 3rem 0;
+}
+
+.copy-right div:first-child {
+  margin-left: 6rem;
+}
+
+.copy-right div:last-child {
+  margin-right: 6rem;
+}
+
+.copy-right div:last-child i {
+  margin: 0 1rem;
+  cursor: pointer;
+  font-size: 1.5rem;
+}
