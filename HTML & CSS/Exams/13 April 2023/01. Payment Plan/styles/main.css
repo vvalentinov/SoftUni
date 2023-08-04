@@ -1,0 +1,69 @@
+@import url(reset.css);
+@import url(https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css);
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap');
+
+body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 2rem;
+  font-family: 'Inter';
+  background-image: url(../image/background.jpg);
+  background-position: center;
+}
+
+article {
+  border: solid 1px black;
+  padding: 2rem 2rem;
+  flex-basis: 27%;
+  background-color: white;
+}
+
+article:nth-child(2) {
+  padding-left: 1.9rem;
+  padding-right: 1.9rem;
+}
+
+article p {
+  font-size: 0.8rem;
+  color: grey;
+}
+article:nth-child(1) ul {
+  margin-bottom: 2.5rem;
+}
+
+article:nth-child(2) ul {
+  margin-bottom: 4rem;
+}
+
+article:nth-child(3) ul {
+  margin-bottom: 1.5rem;
+}
+
+article h2 {
+  font-size: 1.7rem;
+  text-transform: uppercase;
+  font-weight: 500;
+}
+
+article ul li {
+  margin: 1rem 0;
+}
+
+article ul li i {
+  margin-right: 0.5rem;
+}
+
+article span:nth-child(3) {
+  font-size: 4rem;
+  font-weight: bold;
+}
+
+article button {
+  background-color: black;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  padding: 1rem 2rem;
+  cursor: pointer;
+}
