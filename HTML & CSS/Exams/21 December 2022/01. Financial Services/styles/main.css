@@ -1,0 +1,66 @@
+@import url(reset.css);
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+body {
+  font-family: 'Poppins';
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+}
+
+.title-container {
+  text-align: center;
+  margin-bottom: 1rem;
+}
+
+.title-container span {
+  font-size: 2rem;
+  font-weight: 600;
+}
+
+.title-container span:nth-child(2) {
+  color: #3684c8;
+}
+
+.services-container {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+}
+
+.services-container article {
+  flex-basis: 27%;
+  background-color: #819daf;
+  border-radius: 20px;
+}
+
+.services-container article img {
+  height: 55%;
+  width: 100%;
+  border-bottom-left-radius: 20px;
+  border-bottom-right-radius: 20px;
+  border-top-left-radius: 20px;
+  border-top-right-radius: 20px;
+}
+
+article h2 {
+  font-weight: 600;
+}
+
+article p {
+  font-weight: 400;
+  margin-top: 0.7rem;
+}
+
+article .article-body {
+  padding: 1.5rem 1rem;
+}
+
+article .article-body button {
+  margin-top: 1rem;
+  background-color: #327dc4;
+  color: white;
+  padding: 0.3rem 2rem;
+  border-radius: 20px;
+  cursor: pointer;
+}
