@@ -1,0 +1,317 @@
+@import url(reset.css);
+@import url(https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css);
+
+:root {
+  --clr-primary: #85dcff;
+}
+
+body {
+  font-family: 'Arial', sans-serif;
+}
+
+/* Navigation */
+nav {
+  display: flex;
+  justify-content: space-between;
+  font-size: 1.7rem;
+  /* border: solid 2px red; */
+  padding: 1.6rem 5rem;
+  font-weight: bold;
+}
+
+nav span {
+  cursor: pointer;
+}
+
+nav ul {
+  display: flex;
+  gap: 2rem;
+}
+
+nav ul li {
+  cursor: pointer;
+}
+
+/* Hero Section */
+.hero {
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  background-color: var(--clr-primary);
+}
+
+.hero .section-text {
+  padding: 2rem 6rem;
+  flex-basis: 50%;
+}
+
+.hero .section-text h2 {
+  font-size: 2rem;
+}
+
+.hero .section-text p {
+  margin: 2rem 0;
+}
+
+.hero .section-text .buttons-container {
+  display: flex;
+  justify-content: space-between;
+}
+
+.hero .section-text .buttons-container button {
+  border-radius: 5px;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.hero .section-text .buttons-container button:nth-child(1) {
+  padding: 1rem 4rem;
+}
+.hero .section-text .buttons-container button:nth-child(2) {
+  padding: 1rem 5.5rem;
+  background-color: black;
+  color: white;
+}
+
+.hero img {
+  flex-basis: 35%;
+}
+
+/* Features Section */
+.features {
+  padding: 2rem 0;
+}
+
+.features h2 {
+  text-align: center;
+  font-size: 1.5rem;
+}
+
+.features p:nth-child(2) {
+  text-align: center;
+  padding: 0 27rem;
+  font-size: 1.5rem;
+  margin: 2.5rem 0;
+}
+
+.features ul {
+  display: flex;
+  justify-content: center;
+  text-align: center;
+  gap: 1rem;
+}
+.features ul li {
+  flex-basis: 30%;
+}
+
+.features ul li i {
+  font-size: 10rem;
+  color: var(--clr-primary);
+}
+
+.features ul li h3 {
+  margin: 2rem 0;
+  font-size: 1.5rem;
+}
+
+.features ul li p {
+  padding: 0 3.7rem;
+}
+
+/* Mission Section */
+.mission {
+  background-color: var(--clr-primary);
+  padding: 4rem 0;
+}
+
+.mission h2 {
+  text-align: center;
+  font-size: 2.5rem;
+}
+
+.mission ul {
+  flex-basis: 30%;
+  font-size: 1.5rem;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 0 0.5rem;
+}
+
+.mission ul li {
+  margin: 1rem 0;
+  display: flex;
+}
+.mission ul li i {
+  margin-right: 0.5rem;
+}
+
+.mission .mission-container {
+  display: flex;
+  justify-content: center;
+  margin: 3rem 0;
+  gap: 5rem;
+}
+
+.mission .button-container {
+  display: flex;
+  justify-content: center;
+}
+
+.mission .button-container button {
+  background-color: black;
+  color: white;
+  padding: 1rem 5rem;
+  border-radius: 10px;
+  cursor: pointer;
+}
+
+/* Animals Section */
+.animals {
+  padding: 3rem 0;
+}
+.animals h2 {
+  text-align: center;
+  font-size: 3rem;
+  font-weight: 800;
+}
+
+.animals p {
+  text-align: center;
+  font-size: 1.3rem;
+}
+
+.animals ul {
+  display: flex;
+  justify-content: center;
+  margin: 2rem 0;
+  gap: 3rem;
+  height: 18rem;
+}
+
+.animals ul li {
+  flex-basis: 20%;
+}
+
+.animals ul li img {
+  height: 100%;
+}
+
+/* Work Section */
+.work {
+  padding-bottom: 3rem;
+}
+.work h3 {
+  text-align: center;
+  font-size: 2rem;
+}
+
+.work .goals-container {
+  /* border: solid 1px black; */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin: 2rem 0;
+}
+
+.work .goals-container .goal {
+  border: solid 0.1px lightgray;
+  width: 75%;
+  font-weight: bold;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+  border-bottom-left-radius: 10px;
+  border-bottom-right-radius: 10px;
+}
+
+.work .goals-container .goal:nth-child(2) {
+  margin: 2rem 0;
+}
+
+.work .goals-container .goal:nth-child(2) .goal-desc {
+  padding-right: 3rem;
+}
+
+.goals-container .goal .goal-title {
+  font-size: 1.3rem;
+  padding-top: 1.5rem;
+  padding-bottom: 1.5rem;
+  padding-left: 3rem;
+  background-color: var(--clr-primary);
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+}
+
+.goals-container .goal .goal-desc {
+  padding-top: 2rem;
+  padding-bottom: 2rem;
+  padding-left: 1.8rem;
+  border-bottom-left-radius: 10px;
+  border-bottom-right-radius: 10px;
+  font-size: 1.1rem;
+}
+
+/* News Section */
+.news {
+  display: flex;
+}
+
+.news img {
+  width: 50%;
+}
+
+.news .news-container {
+  width: 50%;
+  padding-top: 6rem;
+  padding-bottom: 6rem;
+  padding-left: 4rem;
+}
+
+.news .news-container h3 {
+  font-size: 2rem;
+}
+.news .news-container p {
+  margin: 2rem 0;
+  padding-right: 5rem;
+}
+.news .news-container input {
+  display: block;
+  margin-bottom: 2rem;
+  padding: 1rem 1.5rem;
+  font-weight: bold;
+  border-radius: 10px;
+  border: solid 0.5px lightgray;
+  font-size: 1.3rem;
+}
+.news .news-container button {
+  background-color: black;
+  color: white;
+  padding: 1rem 6rem;
+  font-weight: bold;
+  border-radius: 10px;
+  border: none;
+  cursor: pointer;
+}
+
+/* Copyright Section */
+.copyright {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-top: 3rem;
+  padding-bottom: 3rem;
+}
+
+.copyright .socials {
+  font-size: 2.5rem;
+  margin-left: 5rem;
+}
+.copyright span {
+  margin-right: 5rem;
+}
+.copyright .socials i {
+  cursor: pointer;
+  margin: 0 1rem;
+}
