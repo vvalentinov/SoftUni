@@ -1,0 +1,103 @@
+@import url(reset.css);
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,300;1,400;1,500;1,600;1,700;1,800&display=swap');
+
+body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: 'Open Sans';
+}
+
+.container {
+  display: flex;
+  border: solid 1px black;
+  height: 35rem;
+  border-radius: 15px;
+  box-shadow: 5px 5px 8px #888888;
+}
+
+.container img {
+  height: 100%;
+  width: 50%;
+  filter: brightness(60%);
+  border-top-left-radius: 15px;
+  border-bottom-left-radius: 15px;
+}
+
+.container .calc-container {
+  width: 100%;
+  text-align: center;
+  padding: 3rem 2.5rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: #f6f7f8;
+  border-top-right-radius: 15px;
+  border-bottom-right-radius: 15px;
+}
+
+.calc-container h1 {
+  font-weight: 500;
+  text-transform: uppercase;
+  margin-bottom: 2rem;
+}
+
+.units-container {
+  display: flex;
+  gap: 2.5rem;
+  margin-bottom: 1.5rem;
+}
+
+.units-container button {
+  border-radius: 10px;
+  padding-top: 0.3rem;
+  padding-bottom: 0.3rem;
+  cursor: pointer;
+}
+
+.units-container button:first-child {
+  background-color: #86d862;
+  padding-left: 1rem;
+  padding-right: 1rem;
+}
+
+.units-container button:last-child {
+  padding-left: 2.5rem;
+  padding-right: 2.5rem;
+}
+
+.gender-container {
+  display: flex;
+  justify-content: space-between;
+  /* border: solid 1px green; */
+  width: 100%;
+  margin-bottom: 1rem;
+}
+
+.gender-container select {
+  width: 50%;
+}
+
+#weight {
+  width: 100%;
+  margin-bottom: 1rem;
+}
+
+.height-container {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  margin-bottom: 4rem;
+}
+
+#calc {
+  color: white;
+  width: 100%;
+  background-color: #05a2d3;
+  border-radius: 20px;
+  border: none;
+  padding: 0.3rem 0;
+  cursor: pointer;
+  font-weight: bold;
+  box-shadow: 5px 5px 8px #888888;
+}
