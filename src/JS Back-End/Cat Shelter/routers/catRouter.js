@@ -9,6 +9,13 @@ const catRouter = async (req, res) => {
         res.writeHead(200, { 'Content-Type': 'text/html' });
         res.write(addBreedHtml);
         res.end();
+    } else if (req.url == '/cats/add-cat') {
+        const addCatHtmlPath = path.resolve(__dirname, '../views/addCat.html');
+        const addCatHtml = await fs.readFile(addCatHtmlPath);
+
+        res.writeHead(200, { 'Content-Type': 'text/html' });
+        res.write(addCatHtml);
+        res.end();
     }
 };
 
