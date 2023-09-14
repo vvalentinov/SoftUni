@@ -1,7 +1,7 @@
 const fs = require('fs/promises');
 const path = require('path');
 
-const staticRoute = async (req, res) => {
+const staticRouter = async (req, res) => {
     if (req.url.endsWith('site.css')) {
         const siteCssPath = path.resolve(__dirname, '../content/styles/site.css');
         const siteCss = await fs.readFile(siteCssPath);
@@ -19,4 +19,4 @@ const staticRoute = async (req, res) => {
     }
 };
 
-module.exports = staticRoute;
+module.exports = staticRouter;
