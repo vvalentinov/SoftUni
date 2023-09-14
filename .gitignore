@@ -12,3 +12,4 @@ obj
 *.svg
 *.webp
 *.ico
+*node_modules
