@@ -1,6 +1,8 @@
 const fs = require('fs/promises');
 const path = require('path');
 
+const { addBreedToDb } = require('../services/breedsService');
+
 const catRouter = async (req, res) => {
     if (req.url == '/cats/add-breed' && req.method === 'GET') {
         const addBreedHtmlPath = path.resolve(__dirname, '../views/addBreed.html');
@@ -14,16 +16,7 @@ const catRouter = async (req, res) => {
             const input = data.toString().split('=')[1];
             const breed = input.replaceAll('+', ' ');
 
-            const breedsDbPath = path.resolve(__dirname, '../data/breeds.json');
-            const breedsDb = await fs.readFile(breedsDbPath);
-
-            if (breedsDb.length) {
-                let breeds = Object.values(JSON.parse(breedsDb));
-                breeds.push(breed);
-                await fs.writeFile(breedsDbPath, JSON.stringify(breeds, null, 4));
-            } else {
-                await fs.writeFile(breedsDbPath, JSON.stringify([breed], null, 4));
-            }
+            await addBreedToDb(breed);
         });
 
         res.writeHead(301, { Location: '/' });
