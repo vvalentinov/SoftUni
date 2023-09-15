@@ -21,9 +21,20 @@ const catRouter = async (req, res) => {
 
         res.writeHead(301, { Location: '/' });
         res.end();
-    } else if (req.url == '/cats/add-cat') {
+    } else if (req.url == '/cats/add-cat' && req.method === 'GET') {
         const addCatHtmlPath = path.resolve(__dirname, '../views/addCat.html');
-        const addCatHtml = await fs.readFile(addCatHtmlPath);
+        let addCatHtml = await fs.readFile(addCatHtmlPath, 'utf-8');
+
+        const breedsDbPath = path.resolve(__dirname, '../data/breeds.json');
+        const breedsDb = await fs.readFile(breedsDbPath);
+
+        if (breedsDb.length) {
+            const breeds = Object.values(JSON.parse(breedsDb));
+            let breedsHtml = '';
+            breeds.forEach(breed => breedsHtml += `<option value="${breed}">${breed}</option>`);
+
+            addCatHtml = addCatHtml.replace('{{breeds}}', breedsHtml);
+        }
 
         res.writeHead(200, { 'Content-Type': 'text/html' });
         res.write(addCatHtml);
