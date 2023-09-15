@@ -16,11 +16,26 @@ const catRouter = async (req, res) => {
             const input = data.toString().split('=')[1];
             const breed = input.replaceAll('+', ' ');
 
-            await addBreedToDb(breed);
-        });
+            const breedsDbPath = path.resolve(__dirname, '../data/breeds.json');
+            const breedsDb = await fs.readFile(breedsDbPath);
 
-        res.writeHead(301, { Location: '/' });
-        res.end();
+            const breeds = Object.values(JSON.parse(breedsDb));
+
+            if (breeds.includes(breed)) {
+                const errorHtmlPath = path.resolve(__dirname, '../views/error.html');
+                let errorHtml = await fs.readFile(errorHtmlPath, 'utf-8');
+
+                errorHtml = errorHtml.replace('{{error}}', 'This breed alreay exist!');
+
+                res.writeHead(200, { 'Content-Type': 'text/html' });
+                res.write(errorHtml);
+                res.end();
+            } else {
+                await addBreedToDb(breed);
+                res.writeHead(301, { Location: '/' });
+                res.end();
+            }
+        });
     } else if (req.url == '/cats/add-cat' && req.method === 'GET') {
         const addCatHtmlPath = path.resolve(__dirname, '../views/addCat.html');
         let addCatHtml = await fs.readFile(addCatHtmlPath, 'utf-8');

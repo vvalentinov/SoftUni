@@ -98,6 +98,10 @@ form button:hover {
     color: lightblue;
 }
 
+.error {
+    color: red;
+}
+
 .cats {
     margin-left: 5rem;
     margin-right: 5rem;
