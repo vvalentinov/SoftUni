@@ -1,6 +1,15 @@
+// Third party modules
+const formidable = require('formidable');
+
+// Services
 const { addBreedToDb } = require('../services/breedsService');
+const { addCatToDb } = require('../services/catsService');
+
+
+// Util Functions
 const { getHtml, getDbCollection } = require('../utils/getFile');
 const { errorMessage } = require('../utils/returnError');
+const { validateCat } = require('../utils/validateCatForm');
 
 const catRouter = async (req, res) => {
     if (req.url == '/cats/add-breed' && req.method === 'GET') {
@@ -51,6 +60,29 @@ const catRouter = async (req, res) => {
 
         res.writeHead(200, { 'Content-Type': 'text/html' });
         res.write(addCatHtml);
+        res.end();
+    } else if (req.url == '/cats/add-cat' && req.method === 'POST') {
+        let form = new formidable.IncomingForm();
+        let fields;
+        let files;
+
+        try {
+            [fields, files] = await form.parse(req);
+
+            if (!validateCat(fields)) {
+                return await errorMessage(res, 'All input fields are required!');
+            }
+
+            const catName = fields['name'][0];
+            const catDescription = fields['description'][0];
+            const catBreed = fields['breed'][0];
+            const catImageFile = files['upload'][0];
+
+            await addCatToDb(catName, catDescription, catBreed, catImageFile);
+        } catch (error) {
+            return await errorMessage(res, `${error}`);
+        }
+        res.writeHead(301, { Location: '/' });
         res.end();
     }
 };
