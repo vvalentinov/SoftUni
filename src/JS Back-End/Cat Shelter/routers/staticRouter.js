@@ -9,8 +9,8 @@ const staticRouter = async (req, res) => {
         res.writeHead(200, { 'Content-Type': 'text/css' });
         res.write(siteCss);
         res.end();
-    } else if (req.url.endsWith('pawprint.ico')) {
-        const pawprintIcoPath = path.resolve(__dirname, '../content/images/pawprint.ico');
+    } else if (req.url.endsWith('.ico')) {
+        const pawprintIcoPath = path.resolve(__dirname, '../content/images/favicon.ico');
         const pawprintIco = await fs.readFile(pawprintIcoPath);
 
         res.writeHead(200, { 'Content-Type': 'image/png' });
