@@ -1,5 +1,14 @@
 const { getHtml, getDbCollection } = require('../utils/getFile');
 
+const { getCatWithId } = require('../services/catsService');
+
+exports.generateAddCatHtml = async () => {
+    let addCatHtml = await getHtml('addCat');
+    let breedsOptionsHtml = await generateBreedsOptionsHtml();
+    addCatHtml = addCatHtml.replace('{{breeds}}', breedsOptionsHtml);
+    return addCatHtml;
+};
+
 exports.generateHomeHtml = async () => {
     let homeHtml = await getHtml('index', 'home');
 
@@ -15,7 +24,7 @@ exports.generateHomeHtml = async () => {
                     <p><span>Description: </span>${cat.description}
                     </p>
                     <ul class="buttons">
-                            <li class="btn edit"><a href="/cats/edit-cat">Change Info</a></li>
+                            <li class="btn edit"><a href="/cats/edit-cat?id=${cat.id}">Change Info</a></li>
                             <li class="btn delete"><a href="/cats/shelter-cat">New Home</a></li>
                     </ul>
                 </li>`;
@@ -25,3 +34,36 @@ exports.generateHomeHtml = async () => {
 
     return homeHtml;
 };
+
+exports.generateEditCatHtml = async (catId) => {
+    const cat = await getCatWithId(catId);
+
+    const breedsHtml = await generateBreedsOptionsHtml(cat.breed);
+
+    let editCatHtml = await getHtml('editCat');
+    editCatHtml = editCatHtml.replace('{{name}}', cat.name);
+    editCatHtml = editCatHtml.replace('{{description}}', cat.description);
+    editCatHtml = editCatHtml.replace('{{breeds}}', breedsHtml);
+
+    return editCatHtml;
+};
+
+exports.generateErrorHtml = async (errorMessage) => {
+    let errorHtml = await getHtml('error');
+    errorHtml = errorHtml.replace('{{error}}', `${errorMessage}`);
+    return errorHtml;
+};
+
+async function generateBreedsOptionsHtml(catBreed) {
+    let result = '';
+    const breedsDb = await getDbCollection('breeds');
+    const breeds = JSON.parse(breedsDb);
+    breeds.forEach(breed => {
+        if (catBreed && breed == catBreed) {
+            result += `<option value="${breed}" selected>${breed}</option>`;
+        } else {
+            result += `<option value="${breed}">${breed}</option>`;
+        }
+    });
+    return result;
+}

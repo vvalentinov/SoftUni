@@ -5,19 +5,21 @@ const formidable = require('formidable');
 const { addBreedToDb } = require('../services/breedsService');
 const { addCatToDb } = require('../services/catsService');
 
-
 // Util Functions
 const { getHtml, getDbCollection } = require('../utils/getFile');
 const { errorMessage } = require('../utils/returnError');
-const { validateCat } = require('../utils/validateCatForm');
+const { validateCat } = require('../utils/validator');
+const { generateEditCatHtml, generateAddCatHtml } = require('../utils/generateHtml');
 
 const catRouter = async (req, res) => {
-    if (req.url == '/cats/add-breed' && req.method === 'GET') {
+    const requestUrl = new URL(req.url, 'http://localhost:5002/');
+
+    if (requestUrl.pathname == '/cats/add-breed' && req.method === 'GET') {
         const addBreedHtml = await getHtml('addBreed');
         res.writeHead(200, { 'Content-Type': 'text/html' });
         res.write(addBreedHtml);
         res.end();
-    } else if (req.url == '/cats/add-breed' && req.method === 'POST') {
+    } else if (requestUrl.pathname == '/cats/add-breed' && req.method === 'POST') {
         let requestData = '';
         req.on('data', async (chunk) => {
             requestData += chunk;
@@ -47,21 +49,13 @@ const catRouter = async (req, res) => {
                 }
             }
         });
-    } else if (req.url == '/cats/add-cat' && req.method === 'GET') {
-        let addCatHtml = await getHtml('addCat');
-        const breedsDb = await getDbCollection('breeds');
-
-        if (breedsDb.length) {
-            const breeds = Object.values(JSON.parse(breedsDb));
-            let breedsHtml = '';
-            breeds.forEach(breed => breedsHtml += `<option value="${breed}">${breed}</option>`);
-            addCatHtml = addCatHtml.replace('{{breeds}}', breedsHtml);
-        }
+    } else if (requestUrl.pathname == '/cats/add-cat' && req.method === 'GET') {
+        const addCatHtml = await generateAddCatHtml();
 
         res.writeHead(200, { 'Content-Type': 'text/html' });
         res.write(addCatHtml);
         res.end();
-    } else if (req.url == '/cats/add-cat' && req.method === 'POST') {
+    } else if (requestUrl.pathname == '/cats/add-cat' && req.method === 'POST') {
         let form = new formidable.IncomingForm();
         let fields;
         let files;
@@ -83,6 +77,13 @@ const catRouter = async (req, res) => {
             return await errorMessage(res, `${error}`);
         }
         res.writeHead(301, { Location: '/' });
+        res.end();
+    } else if (requestUrl.pathname == '/cats/edit-cat' && req.method === 'GET') {
+        const catId = requestUrl.searchParams.get('id');
+        const editCatHtml = await generateEditCatHtml(catId);
+
+        res.writeHead(200, { 'Content-Type': 'text/html' });
+        res.write(editCatHtml);
         res.end();
     }
 };

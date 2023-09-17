@@ -1,7 +1,10 @@
 const fs = require('fs/promises');
 const uniqid = require('uniqid');
 
-const { getDbCollection, getDbCollectionPath, getCatImageUploadFolderPath } = require('../utils/getFile');
+const {
+    getDbCollection,
+    getDbCollectionPath,
+    getCatImageUploadFolderPath } = require('../utils/getFile');
 
 exports.addCatToDb = async (catName, catDescription, catBreed, catImageFile) => {
     const cat = {
@@ -25,4 +28,13 @@ exports.addCatToDb = async (catName, catDescription, catBreed, catImageFile) => 
     } else {
         await fs.writeFile(catsCollectionPath, JSON.stringify([cat], null, 4));
     }
+};
+
+exports.getCatWithId = async (catId) => {
+    const catsCollection = await getDbCollection('cats');
+    const cats = JSON.parse(catsCollection);
+
+    const cat = cats.find(catEl => catEl.id == catId);
+
+    return cat;
 };
