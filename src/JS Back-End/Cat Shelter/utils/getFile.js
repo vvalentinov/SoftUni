@@ -15,8 +15,8 @@ exports.getDbCollectionPath = (collectionName) => {
     return pathResult;
 };
 
-exports.getCatImageUploadFolderPath = (catImageFile) => {
-    const uploadFolder = path.join(__dirname, '..', 'content', 'images', 'catsImages', `${catImageFile.originalFilename}`);
+exports.getCatImageUploadFolderPath = (catImage) => {
+    const uploadFolder = path.join(__dirname, '..', 'content', 'images', 'catsImages', `${catImage}`);
 
     return uploadFolder;
 };

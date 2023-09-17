@@ -3,13 +3,13 @@ const formidable = require('formidable');
 
 // Services
 const { addBreedToDb } = require('../services/breedsService');
-const { addCatToDb, editCat } = require('../services/catsService');
+const { addCatToDb, editCat, removeCatWithId } = require('../services/catsService');
 
 // Util Functions
 const { getHtml, getDbCollection } = require('../utils/getFile');
 const { errorMessage } = require('../utils/returnError');
 const { validateCat } = require('../utils/validator');
-const { generateEditCatHtml, generateAddCatHtml } = require('../utils/generateHtml');
+const { generateEditCatHtml, generateAddCatHtml, generateShelterHtml } = require('../utils/generateHtml');
 
 const catRouter = async (req, res) => {
     const requestUrl = new URL(req.url, 'http://localhost:5002/');
@@ -105,6 +105,21 @@ const catRouter = async (req, res) => {
         } catch (error) {
             return await errorMessage(res, `${error}`);
         }
+
+        res.writeHead(301, { Location: '/' });
+        res.end();
+    } else if (requestUrl.pathname == '/cats/shelter-cat' && req.method === 'GET') {
+        const catId = requestUrl.searchParams.get('id');
+        const shelterHtml = await generateShelterHtml(catId);
+
+        res.writeHead(200, { 'Content-Type': 'text/html' });
+        res.write(shelterHtml);
+        res.end();
+    } else if (requestUrl.pathname == '/cats/shelter-cat' && req.method === 'POST') {
+        const catId = requestUrl.searchParams.get('id');
+
+        await removeCatWithId(catId);
+
         res.writeHead(301, { Location: '/' });
         res.end();
     }

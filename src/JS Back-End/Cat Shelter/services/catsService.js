@@ -21,7 +21,7 @@ exports.addCatToDb = async (catName, catDescription, catBreed, catImageFile) => 
     const catsCollection = await getDbCollection('cats');
     const catsCollectionPath = getDbCollectionPath('cats');
 
-    const uploadFolder = getCatImageUploadFolderPath(catImageFile);
+    const uploadFolder = getCatImageUploadFolderPath(catImageFile.originalFilename);
     await fs.rename(catImageFile.filepath, uploadFolder);
 
     if (catsCollection.length) {
@@ -56,7 +56,7 @@ exports.editCat = async (catId, name, description, breed, imageFile) => {
         cat.breed = breed;
     }
 
-    const uploadFolder = getCatImageUploadFolderPath(imageFile);
+    const uploadFolder = getCatImageUploadFolderPath(imageFile.originalFilename);
     await fs.rename(imageFile.filepath, uploadFolder);
 
     cat.image = imageFile.originalFilename;
@@ -74,4 +74,18 @@ exports.getCatWithId = async (catId) => {
     const cat = cats.find(catEl => catEl.id == catId);
 
     return cat;
+};
+
+exports.removeCatWithId = async (catId) => {
+    const cat = await this.getCatWithId(catId);
+
+    const imagePath = getCatImageUploadFolderPath(cat.image);
+    await fs.unlink(imagePath);
+
+    const catsCollection = await getDbCollection('cats');
+    let cats = JSON.parse(catsCollection);
+
+    cats = cats.filter(catEl => catEl.id != cat.id);
+    const catsCollectionPath = getDbCollectionPath('cats');
+    await fs.writeFile(catsCollectionPath, JSON.stringify(cats, null, 4));
 };

@@ -25,7 +25,7 @@ exports.generateHomeHtml = async () => {
                     </p>
                     <ul class="buttons">
                             <li class="btn edit"><a href="/cats/edit-cat?id=${cat.id}">Change Info</a></li>
-                            <li class="btn delete"><a href="/cats/shelter-cat">New Home</a></li>
+                            <li class="btn delete"><a href="/cats/shelter-cat?id=${cat.id}">New Home</a></li>
                     </ul>
                 </li>`;
     });
@@ -53,6 +53,19 @@ exports.generateErrorHtml = async (errorMessage) => {
     let errorHtml = await getHtml('error');
     errorHtml = errorHtml.replace('{{error}}', `${errorMessage}`);
     return errorHtml;
+};
+
+exports.generateShelterHtml = async (catId) => {
+    const cat = await getCatWithId(catId);
+
+    let shelterHtml = await getHtml('catShelter');
+    shelterHtml = shelterHtml.replace('{{id}}', cat.id);
+    shelterHtml = shelterHtml.replace('{{name}}', cat.name);
+    shelterHtml = shelterHtml.replace('{{image}}', cat.image);
+    shelterHtml = shelterHtml.replace('{{description}}', cat.description);
+    shelterHtml = shelterHtml.replaceAll('{{breed}}', cat.breed);
+
+    return shelterHtml;
 };
 
 async function generateBreedsOptionsHtml(catBreed) {
