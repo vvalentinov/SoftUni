@@ -51,3 +51,13 @@ exports.getImage = async (imageName, subFolderName) => {
 
     return image;
 };
+
+exports.getImagePath = async (imageName, subFolderName) => {
+    let imagePath = path.resolve(__dirname, `../content/images/${imageName}`);
+
+    if (subFolderName) {
+        imagePath = path.resolve(__dirname, `../content/images/${subFolderName}/${imageName}`);
+    }
+
+    return imagePath;
+};

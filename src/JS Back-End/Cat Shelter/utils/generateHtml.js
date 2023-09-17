@@ -41,6 +41,7 @@ exports.generateEditCatHtml = async (catId) => {
     const breedsHtml = await generateBreedsOptionsHtml(cat.breed);
 
     let editCatHtml = await getHtml('editCat');
+    editCatHtml = editCatHtml.replace('{{id}}', cat.id);
     editCatHtml = editCatHtml.replace('{{name}}', cat.name);
     editCatHtml = editCatHtml.replace('{{description}}', cat.description);
     editCatHtml = editCatHtml.replace('{{breeds}}', breedsHtml);

@@ -2,9 +2,12 @@ const fs = require('fs/promises');
 const uniqid = require('uniqid');
 
 const {
+    getImagePath,
     getDbCollection,
     getDbCollectionPath,
-    getCatImageUploadFolderPath } = require('../utils/getFile');
+    getCatImageUploadFolderPath,
+} = require('../utils/getFile');
+
 
 exports.addCatToDb = async (catName, catDescription, catBreed, catImageFile) => {
     const cat = {
@@ -28,6 +31,40 @@ exports.addCatToDb = async (catName, catDescription, catBreed, catImageFile) => 
     } else {
         await fs.writeFile(catsCollectionPath, JSON.stringify([cat], null, 4));
     }
+};
+
+exports.editCat = async (catId, name, description, breed, imageFile) => {
+    const cat = await this.getCatWithId(catId);
+
+    const catImagePath = await getImagePath(cat.image, 'catsImages');
+    await fs.unlink(catImagePath);
+
+    const catsDb = await getDbCollection('cats');
+    let cats = JSON.parse(catsDb);
+
+    cats = cats.filter(catEl => catEl.id != cat.id);
+
+    if (name != cat.name) {
+        cat.name = name;
+    }
+
+    if (description != cat.description) {
+        cat.description = description;
+    }
+
+    if (breed != cat.breed) {
+        cat.breed = breed;
+    }
+
+    const uploadFolder = getCatImageUploadFolderPath(imageFile);
+    await fs.rename(imageFile.filepath, uploadFolder);
+
+    cat.image = imageFile.originalFilename;
+
+    cats.push(cat);
+
+    const catsCollectionPath = getDbCollectionPath('cats');
+    await fs.writeFile(catsCollectionPath, JSON.stringify(cats, null, 4));
 };
 
 exports.getCatWithId = async (catId) => {
