@@ -1,20 +1,24 @@
-const fs = require('fs/promises');
-const path = require('path');
+const { getImage, getCss } = require('../utils/getFile');
 
 const staticRouter = async (req, res) => {
     if (req.url.endsWith('site.css')) {
-        const siteCssPath = path.resolve(__dirname, '../content/styles/site.css');
-        const siteCss = await fs.readFile(siteCssPath);
+        const siteCss = await getCss();
 
         res.writeHead(200, { 'Content-Type': 'text/css' });
         res.write(siteCss);
         res.end();
     } else if (req.url.endsWith('.ico')) {
-        const pawprintIcoPath = path.resolve(__dirname, '../content/images/favicon.ico');
-        const pawprintIco = await fs.readFile(pawprintIcoPath);
+        const favicon = await getImage('favicon.ico');
 
-        res.writeHead(200, { 'Content-Type': 'image/png' });
-        res.write(pawprintIco);
+        res.writeHead(200, { 'Content-Type': 'image/x-icon' });
+        res.write(favicon);
+        res.end();
+    } else if (req.url.endsWith('.png') || req.url.endsWith('.jpg') || req.url.endsWith('.jpeg')) {
+        const imageName = req.url.substring(1);
+        const image = await getImage(imageName, 'catsImages');
+
+        res.writeHead(200, { 'Content-Type': 'image/jpeg' });
+        res.write(image);
         res.end();
     }
 };

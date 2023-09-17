@@ -1,0 +1,23 @@
+[
+    {
+        "id": "58o87iclmn2gwpr",
+        "name": "George",
+        "description": "George is a very calm and collected bombat cat. He is very affectionate. He is looking for his future best bud.",
+        "breed": "Bombay Cat",
+        "image": "bombay-cat-george.jpg"
+    },
+    {
+        "id": "58o838slmn3o99f",
+        "name": "Andrea",
+        "description": "The Persian is an extreme-looking breed. Andrea's body is short, but thick with thick legs and a short, thick neck. The tail is short and the ears are small. The head is round with large, round eyes.",
+        "breed": "Persian Cat",
+        "image": "persian-cat-andrea.jpg"
+    },
+    {
+        "id": "58o82r8lmn3q5sj",
+        "name": "Peter",
+        "description": "The tail is long and tapers to a point. The eyes are almond shape and bright blue. Peter's coat is short, glossy and lies close to the body. The beauty of the Siamese cat is the look of the slender body, the blue eyes and the contrast between the color on the body and the darker color of the extremities.",
+        "breed": "Siamese Cat",
+        "image": "siamese-cat-peter.jpg"
+    }
+]

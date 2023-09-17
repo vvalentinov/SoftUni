@@ -32,3 +32,22 @@ exports.getHtml = async (htmlName, subFolderName) => {
 
     return html;
 };
+
+exports.getCss = async () => {
+    const cssPath = path.resolve(__dirname, `../content/styles/site.css`);
+    const css = await fs.readFile(cssPath);
+
+    return css;
+};
+
+exports.getImage = async (imageName, subFolderName) => {
+    let imagePath = path.resolve(__dirname, `../content/images/${imageName}`);
+
+    if (subFolderName) {
+        imagePath = path.resolve(__dirname, `../content/images/${subFolderName}/${imageName}`);
+    }
+
+    const image = await fs.readFile(imagePath);
+
+    return image;
+};
