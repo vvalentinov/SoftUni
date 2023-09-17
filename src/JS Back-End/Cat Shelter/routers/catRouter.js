@@ -3,13 +3,13 @@ const formidable = require('formidable');
 
 // Services
 const { addBreedToDb } = require('../services/breedsService');
-const { addCatToDb, editCat, removeCatWithId } = require('../services/catsService');
+const { addCatToDb, editCat, removeCatWithId, findCatByName } = require('../services/catsService');
 
 // Util Functions
 const { getHtml, getDbCollection } = require('../utils/getFile');
 const { errorMessage } = require('../utils/returnError');
 const { validateCat } = require('../utils/validator');
-const { generateEditCatHtml, generateAddCatHtml, generateShelterHtml } = require('../utils/generateHtml');
+const { generateEditCatHtml, generateAddCatHtml, generateShelterHtml, generateHomeHtml } = require('../utils/generateHtml');
 
 const catRouter = async (req, res) => {
     const requestUrl = new URL(req.url, 'http://localhost:5002/');
@@ -122,6 +122,29 @@ const catRouter = async (req, res) => {
 
         res.writeHead(301, { Location: '/' });
         res.end();
+    } else if (requestUrl.pathname == '/cats/search' && req.method === 'POST') {
+        let requestData = '';
+        req.on('data', async (chunk) => {
+            requestData += chunk;
+        });
+
+        req.on('end', async () => {
+            const input = requestData.toString().split('=')[1];
+            if (input == '') {
+                return await errorMessage(res, 'You must enter cat name!');
+            }
+
+            const cat = await findCatByName(input);
+
+            if (!cat) {
+                return await errorMessage(res, 'No cat found with given name!');
+            }
+            const homeHtml = await generateHomeHtml(cat);
+
+            res.writeHead(200, { 'Content-Type': 'text/html' });
+            res.write(homeHtml);
+            res.end();
+        });
     }
 };
 

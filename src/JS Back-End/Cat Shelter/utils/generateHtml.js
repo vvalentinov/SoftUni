@@ -9,26 +9,40 @@ exports.generateAddCatHtml = async () => {
     return addCatHtml;
 };
 
-exports.generateHomeHtml = async () => {
+exports.generateHomeHtml = async (catInput) => {
     let homeHtml = await getHtml('index', 'home');
 
     const catsCollection = await getDbCollection('cats');
     const cats = JSON.parse(catsCollection);
 
     let catsHtml = '';
-    cats.forEach(cat => {
-        catsHtml += `<li>
-                    <img src="${cat.image}" alt="${cat.name}">
-                    <h3></h3>
-                    <p><span>Breed: </span>${cat.breed}</p>
-                    <p><span>Description: </span>${cat.description}
-                    </p>
-                    <ul class="buttons">
-                            <li class="btn edit"><a href="/cats/edit-cat?id=${cat.id}">Change Info</a></li>
-                            <li class="btn delete"><a href="/cats/shelter-cat?id=${cat.id}">New Home</a></li>
-                    </ul>
-                </li>`;
-    });
+    if (catInput) {
+        catsHtml = `<li>
+        <img src="/${catInput.image}" alt="${catInput.name}">
+        <h3></h3>
+        <p><span>Breed: </span>${catInput.breed}</p>
+        <p><span>Description: </span>${catInput.description}
+        </p>
+        <ul class="buttons">
+                <li class="btn edit"><a href="/cats/edit-cat?id=${catInput.id}">Change Info</a></li>
+                <li class="btn delete"><a href="/cats/shelter-cat?id=${catInput.id}">New Home</a></li>
+        </ul>
+    </li>`;
+    } else {
+        cats.forEach(cat => {
+            catsHtml += `<li>
+                        <img src="/${cat.image}" alt="${cat.name}">
+                        <h3></h3>
+                        <p><span>Breed: </span>${cat.breed}</p>
+                        <p><span>Description: </span>${cat.description}
+                        </p>
+                        <ul class="buttons">
+                                <li class="btn edit"><a href="/cats/edit-cat?id=${cat.id}">Change Info</a></li>
+                                <li class="btn delete"><a href="/cats/shelter-cat?id=${cat.id}">New Home</a></li>
+                        </ul>
+                    </li>`;
+        });
+    }
 
     homeHtml = homeHtml.replace('{{cats}}', catsHtml);
 

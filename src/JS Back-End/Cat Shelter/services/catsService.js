@@ -89,3 +89,12 @@ exports.removeCatWithId = async (catId) => {
     const catsCollectionPath = getDbCollectionPath('cats');
     await fs.writeFile(catsCollectionPath, JSON.stringify(cats, null, 4));
 };
+
+exports.findCatByName = async (catName) => {
+    const catsCollection = await getDbCollection('cats');
+    const cats = JSON.parse(catsCollection);
+
+    const cat = cats.find(catEl => catEl.name.toLowerCase().includes(catName.toLowerCase()));
+
+    return cat;
+};
