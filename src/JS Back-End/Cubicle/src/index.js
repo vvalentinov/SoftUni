@@ -3,9 +3,8 @@ const express = require('express');
 const { handlebarsConfig } = require('./config/handlebarsConfig');
 const { expressConfig } = require('./config/expressConfig');
 
+const { PORT_NUMBER } = require('./constants/constants');
 const routes = require('./routes');
-
-const port = 3001;
 
 const app = express();
 
@@ -14,5 +13,5 @@ expressConfig(app);
 
 app.use(routes);
 
-app.listen(port, () => console.log(`Server is listening on port ${port}...`));
+app.listen(PORT_NUMBER, () => console.log(`Server is listening on port ${PORT_NUMBER}...`));
 
