@@ -14,4 +14,3 @@ expressConfig(app);
 app.use(routes);
 
 app.listen(PORT_NUMBER, () => console.log(`Server is listening on port ${PORT_NUMBER}...`));
-
