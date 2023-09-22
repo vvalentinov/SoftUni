@@ -1,18 +1,21 @@
 const router = require('express').Router();
 
+const cubesService = require('../services/cubesService');
+
 router.get('/create', (req, res) => {
     res.render('cubes/create');
 });
 
-router.post('/create', (req, res) => {
+router.post('/create', async (req, res) => {
     const {
         name,
         description,
         imageUrl,
-        difficultyLevel
+        difficultyLevel,
     } = req.body;
 
-    res.send('Creating cube...');
+    await cubesService.addCube({ name, description, imageUrl, difficultyLevel });
+    res.redirect('/');
 });
 
 module.exports = router;
