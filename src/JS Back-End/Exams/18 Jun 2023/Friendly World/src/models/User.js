@@ -3,18 +3,13 @@ const mongoose = require('mongoose');
 const { generateHash } = require('../utils/bcryptHelper');
 
 const userSchema = new mongoose.Schema({
-    username: {
-        type: String,
-        required: true,
-        unique: true,
-    },
     email: {
         type: String,
-        required: true,
+        required: [true, 'User email is required!'],
     },
     password: {
         type: String,
-        required: true
+        required: [true, 'User password is required!'],
     },
 });
 
