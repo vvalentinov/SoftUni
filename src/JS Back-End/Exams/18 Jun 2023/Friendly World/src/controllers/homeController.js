@@ -1,7 +1,10 @@
 const router = require('express').Router();
 
-router.get('/', (req, res) => {
-    res.render('home');
+const animalService = require('../services/animalsService');
+
+router.get('/', async (req, res) => {
+    const animals = await animalService.getLatestThreeAnimals().lean();
+    res.render('home', { animals });
 });
 
 module.exports = router;
