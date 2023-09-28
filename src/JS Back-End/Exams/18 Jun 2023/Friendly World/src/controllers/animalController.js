@@ -20,7 +20,7 @@ router.post('/add-animal', isAuthenticated, async (req, res) => {
 
 router.get('/dashboard', async (req, res) => {
     const animals = await animalService.getAll().lean();
-    res.render('animals/dashboard');
+    res.render('animals/dashboard', { animals });
 });
 
 module.exports = router;
