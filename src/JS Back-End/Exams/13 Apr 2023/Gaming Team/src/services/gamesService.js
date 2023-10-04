@@ -11,3 +11,5 @@ exports.buyGame = async (gameId, userId) => {
     game.boughtBy.push(userId);
     return game.save();
 };
+
+exports.editGame = async (gameId, gameData) => Game.findByIdAndUpdate(gameId, gameData);

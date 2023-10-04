@@ -38,4 +38,15 @@ router.get('/buy/:gameId', async (req, res) => {
     res.redirect(`/games/details/${req.params.gameId}`);
 });
 
+router.get('/edit/:gameId', isAuthenticated, async (req, res) => {
+    const game = await gameService.getGameWithId(req.params.gameId).lean();
+    res.render('games/edit', { game });
+});
+
+router.post('/edit/:gameId', isAuthenticated, async (req, res) => {
+    const gameData = req.body;
+    await gameService.editGame(req.params.gameId, gameData);
+    res.redirect(`/games/details/${req.params.gameId}`);
+});
+
 module.exports = router;
