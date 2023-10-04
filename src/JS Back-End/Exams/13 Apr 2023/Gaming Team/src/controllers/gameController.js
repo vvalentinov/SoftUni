@@ -54,4 +54,9 @@ router.get('/delete/:gameId', isAuthenticated, async (req, res) => {
     res.redirect('/games/all');
 });
 
+router.get('/search', isAuthenticated, async (req, res) => {
+    const games = await gameService.getAll().lean();
+    res.render('games/search', { games });
+});
+
 module.exports = router;
