@@ -6,8 +6,9 @@ const gameService = require('../services/gamesService');
 
 const { isAuthenticated } = require('../middlewares/authMiddleware');
 
-router.get('/all', (req, res) => {
-    res.render('games/catalog');
+router.get('/all', async (req, res) => {
+    const games = await gameService.getAll().lean();
+    res.render('games/catalog', { games });
 });
 
 router.get('/create', (req, res) => {
