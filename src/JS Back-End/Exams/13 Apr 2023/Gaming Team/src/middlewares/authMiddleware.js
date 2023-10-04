@@ -17,8 +17,7 @@ exports.authenticate = async (req, res, next) => {
             next();
         } catch (error) {
             res.clearCookie(JWT_KEY);
-            // TODO: Redirect to login page
-            // res.redirect('/users/login');
+            res.redirect('/users/login');
         }
     } else {
         next();
@@ -27,8 +26,7 @@ exports.authenticate = async (req, res, next) => {
 
 exports.isAuthenticated = (req, res, next) => {
     if (!req.user) {
-        // TODO: Redirect to login page
-        // return res.redirect('/users/login');
+        return res.redirect('/users/login');
     }
 
     next();
