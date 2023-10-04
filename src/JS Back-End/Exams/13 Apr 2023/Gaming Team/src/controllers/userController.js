@@ -26,4 +26,16 @@ router.get('/login', (req, res) => {
     res.render('users/login');
 });
 
+router.post('/login', async (req, res) => {
+    const { email, password } = req.body;
+
+    try {
+        const token = await userService.login(email, password);
+        res.cookie(JWT_KEY, token);
+        res.redirect('/');
+    } catch (err) {
+        res.render('users/login', { error: getErrorMessage(err) });
+    }
+});
+
 module.exports = router;

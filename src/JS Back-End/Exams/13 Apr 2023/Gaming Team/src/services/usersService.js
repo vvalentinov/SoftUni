@@ -19,15 +19,15 @@ exports.register = async (userData) => {
     return token;
 };
 
-exports.login = async (username, password) => {
-    const user = User.findOne({ username });
+exports.login = async (email, password) => {
+    const user = await User.findOne({ email });
     if (!user) {
-        throw new Error('Invalid username or password!');
+        throw new Error('Invalid email or password!');
     }
 
     const isPassValid = await validateUserPassword(password, user.password);
     if (!isPassValid) {
-        throw new Error('Invalid username or password!');
+        throw new Error('Invalid email or password!');
     }
 
     const token = await generateToken(user._id, user.username, user.email);
