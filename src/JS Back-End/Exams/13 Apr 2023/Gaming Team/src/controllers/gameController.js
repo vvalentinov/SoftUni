@@ -49,4 +49,9 @@ router.post('/edit/:gameId', isAuthenticated, async (req, res) => {
     res.redirect(`/games/details/${req.params.gameId}`);
 });
 
+router.get('/delete/:gameId', isAuthenticated, async (req, res) => {
+    await gameService.deleteGame(req.params.gameId);
+    res.redirect('/games/all');
+});
+
 module.exports = router;
