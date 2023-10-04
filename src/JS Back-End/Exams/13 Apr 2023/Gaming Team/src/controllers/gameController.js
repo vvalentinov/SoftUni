@@ -11,7 +11,7 @@ router.get('/all', async (req, res) => {
     res.render('games/catalog', { games });
 });
 
-router.get('/create', (req, res) => {
+router.get('/create', isAuthenticated, (req, res) => {
     res.render('games/create');
 });
 
