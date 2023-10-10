@@ -59,4 +59,13 @@ router.get('/search', isAuthenticated, async (req, res) => {
     res.render('games/search', { games });
 });
 
+router.post('/search', isAuthenticated, async (req, res) => {
+    const { name, platform } = req.body;
+    let games = await gameService.getAll().lean();
+    if (name != '' && platform != '') {
+        games = await gameService.findGamesWithNameAndPlatform(name, platform).lean();
+    }
+    res.render('games/search', { games });
+});
+
 module.exports = router;
