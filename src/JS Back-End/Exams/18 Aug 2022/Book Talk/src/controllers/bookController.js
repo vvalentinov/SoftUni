@@ -39,4 +39,10 @@ router.get('/wish/:bookId', isAuthenticated, async (req, res) => {
     res.redirect(`/book/details/${bookId}`);
 });
 
+router.get('/edit/:bookId', isAuthenticated, async (req, res) => {
+    const bookId = req.params.bookId;
+    const book = await bookService.getBookById(bookId).lean();
+    res.render('books/edit', { book });
+});
+
 module.exports = router;
