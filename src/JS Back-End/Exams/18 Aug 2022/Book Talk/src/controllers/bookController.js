@@ -45,4 +45,16 @@ router.get('/edit/:bookId', isAuthenticated, async (req, res) => {
     res.render('books/edit', { book });
 });
 
+router.post('/edit/:bookId', isAuthenticated, async (req, res) => {
+    const bookReviewData = req.body;
+    const bookId = req.params.bookId;
+    try {
+        await bookService.editBook(bookId, bookReviewData);
+        res.redirect(`/book/details/${bookId}`);
+    } catch (error) {
+        const book = await bookService.getBookById(bookId).lean();
+        res.render('books/edit', { errorMessage: getErrorMessage(error), book });
+    }
+});
+
 module.exports = router;

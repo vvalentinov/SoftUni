@@ -12,4 +12,4 @@ exports.wishBook = async (bookId, userId) => {
     await book.save();
 };
 
-exports.editBook = (bookId, bookReviewData) => Book.findByIdAndUpdate(bookId, { bookReviewData });
+exports.editBook = (bookId, bookReviewData) => Book.findByIdAndUpdate(bookId, { ...bookReviewData });
