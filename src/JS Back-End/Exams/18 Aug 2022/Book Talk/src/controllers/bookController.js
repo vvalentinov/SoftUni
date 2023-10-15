@@ -57,4 +57,10 @@ router.post('/edit/:bookId', isAuthenticated, async (req, res) => {
     }
 });
 
+router.get('/delete/:bookId', isAuthenticated, async (req, res) => {
+    const bookId = req.params.bookId;
+    await bookService.deleteBook(bookId);
+    res.redirect('/book/all');
+});
+
 module.exports = router;

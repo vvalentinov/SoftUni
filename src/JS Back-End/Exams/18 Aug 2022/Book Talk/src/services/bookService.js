@@ -13,3 +13,4 @@ exports.wishBook = async (bookId, userId) => {
 };
 
 exports.editBook = (bookId, bookReviewData) => Book.findByIdAndUpdate(bookId, { ...bookReviewData });
+exports.deleteBook = (bookId) => Book.findByIdAndDelete(bookId);
