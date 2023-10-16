@@ -14,3 +14,9 @@ exports.wishBook = async (bookId, userId) => {
 
 exports.editBook = (bookId, bookReviewData) => Book.findByIdAndUpdate(bookId, { ...bookReviewData });
 exports.deleteBook = (bookId) => Book.findByIdAndDelete(bookId);
+
+exports.getUserBookReviews = async (userId) => {
+    const books = await Book.find({}).lean();
+    const result = books.filter(book => book.wishingList.some(x => x._id == userId));
+    return result;
+};

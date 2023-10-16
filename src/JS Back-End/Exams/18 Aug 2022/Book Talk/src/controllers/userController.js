@@ -1,8 +1,10 @@
 const router = require('express').Router();
 
 const userService = require('../services/usersService');
+const bookService = require('../services/bookService');
 const { JWT_KEY } = require('../constants/constants');
 const { getErrorMessage } = require('../utils/errorHelper');
+const { isAuthenticated } = require('../middlewares/authMiddleware');
 
 router.get('/register', (req, res) => {
     res.render('users/register');
@@ -32,6 +34,13 @@ router.post('/login', async (req, res) => {
     } catch (error) {
         res.render('users/login', { errorMessage: getErrorMessage(error) });
     }
+});
+
+router.get('/profile/:userId', isAuthenticated, async (req, res) => {
+    const userId = req.params.userId;
+    const user = await userService.getUserById(userId).lean();
+    const bookReviews = await bookService.getUserBookReviews(userId);
+    res.render('users/profile', { user, bookReviews });
 });
 
 router.get('/logout', (req, res) => {
