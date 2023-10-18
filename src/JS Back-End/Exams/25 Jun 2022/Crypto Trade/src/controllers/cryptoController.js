@@ -11,16 +11,19 @@ router.get('/create', isAuthenticated, (req, res) => {
 });
 
 router.post('/create', isAuthenticated, async (req, res) => {
-    const cryptoOfferData = req.body;
+    const owner = req.user._id;
+    const cryptoOfferData = { ...req.body, owner };
     try {
         await cryptoService.create(cryptoOfferData);
+        res.redirect('/crypto/catalog');
     } catch (error) {
         res.render('crypto/create', { errorMessage: getErrorMessage(error) });
     }
 });
 
-router.get('/catalog', (req, res) => {
-    res.render('crypto/catalog');
+router.get('/catalog', async (req, res) => {
+    const offers = await cryptoService.getAll().lean();
+    res.render('crypto/catalog', { offers });
 });
 
 module.exports = router;
