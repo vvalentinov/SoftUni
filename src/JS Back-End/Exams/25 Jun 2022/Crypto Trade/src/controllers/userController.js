@@ -25,6 +25,17 @@ router.get('/login', (req, res) => {
     res.render('user/login');
 });
 
+router.post('/login', async (req, res) => {
+    const { email, password } = req.body;
+    try {
+        const token = await userService.login(email, password);
+        res.cookie(JWT_KEY, token);
+        res.redirect('/');
+    } catch (error) {
+        res.render('user/login', { errorMessage: getErrorMessage(error) });
+    }
+});
+
 router.get('/logout', (req, res) => {
     res.clearCookie(JWT_KEY);
     res.redirect('/');
