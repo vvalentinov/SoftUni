@@ -26,4 +26,14 @@ router.get('/catalog', async (req, res) => {
     res.render('crypto/catalog', { offers });
 });
 
+router.get('/details/:offerId', async (req, res) => {
+    const userId = req.user?._id;
+    const offerId = req.params.offerId;
+
+    const offer = await cryptoService.getById(offerId).lean();
+    const isAuthor = offer.owner._id == userId;
+    const hasBoughtCrypto = offer.buyCripto.some(x => x._id == userId);
+    res.render('crypto/details', { offer, isAuthor, hasBoughtCrypto });
+});
+
 module.exports = router;
