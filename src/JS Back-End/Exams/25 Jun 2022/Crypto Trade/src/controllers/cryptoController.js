@@ -55,4 +55,22 @@ router.get('/edit/:offerId', isAuthenticated, async (req, res) => {
     res.render('crypto/edit', { offer, selectedPaymentMethod });
 });
 
+router.post('/edit/:offerId', isAuthenticated, async (req, res) => {
+    const offerId = req.params.offerId;
+    const offerData = req.body;
+    try {
+        await cryptoService.editOffer(offerId, offerData);
+        res.redirect(`/crypto/details/${offerId}`);
+    } catch (error) {
+        const offer = await cryptoService.getById(offerId).lean();
+        res.render('crypto/edit', { offer, errorMessage: getErrorMessage(error) });
+    }
+});
+
+router.get('/delete/:offerId', isAuthenticated, async (req, res) => {
+    const offerId = req.params.offerId;
+    await cryptoService.deleteOffer(offerId);
+    res.redirect('/crypto/catalog');
+});
+
 module.exports = router;

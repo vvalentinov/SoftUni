@@ -11,3 +11,10 @@ exports.buyCripto = async (userId, offerId) => {
     offer.buyCripto.push(userId);
     await offer.save();
 };
+
+exports.editOffer = (offerId, offerData) => Crypto.findByIdAndUpdate(
+    offerId,
+    { ...offerData },
+    { runValidators: true });
+
+exports.deleteOffer = (offerId) => Crypto.findByIdAndDelete(offerId);

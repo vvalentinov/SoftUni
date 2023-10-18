@@ -1,6 +1,4 @@
 <main>
-    <!-- In case of error, you should display div with class "errorContainer" -->
-    <!-- You can choose to display the first error or all of them (error message/s in your opinion) -->
     {{#if errorMessage}}
     <div>
         <div class="errorContainer">
@@ -22,7 +20,7 @@
                 <label>Description:</label>
                 <textarea name="cryptoDescription" id="description">{{offer.cryptoDescription}}</textarea>
                 <label>Payment method:</label>
-                <select id="payment" name="">
+                <select id="payment" name="paymentMethod">
                     <option value="crypto-wallet" {{#if selectedPaymentMethod.cryptoWallet}}selected{{/if}}>Crypto
                         Wallet</option>
                     <option value="credit-card" {{#if selectedPaymentMethod.creditCard}}selected{{/if}}>Credit Card
