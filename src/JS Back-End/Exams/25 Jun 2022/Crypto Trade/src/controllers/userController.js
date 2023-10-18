@@ -21,6 +21,10 @@ router.post('/register', async (req, res) => {
     }
 });
 
+router.get('/login', (req, res) => {
+    res.render('user/login');
+});
+
 router.get('/logout', (req, res) => {
     res.clearCookie(JWT_KEY);
     res.redirect('/');
