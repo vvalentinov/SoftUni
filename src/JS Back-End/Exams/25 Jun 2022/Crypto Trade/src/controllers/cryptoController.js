@@ -43,4 +43,16 @@ router.get('/buyCrypto/:offerId', isAuthenticated, async (req, res) => {
     res.redirect(`/crypto/details/${offerId}`);
 });
 
+router.get('/edit/:offerId', isAuthenticated, async (req, res) => {
+    const offerId = req.params.offerId;
+    const offer = await cryptoService.getById(offerId).lean();
+    const selectedPaymentMethod = {
+        cryptoWallet: offer.paymentMethod === 'crypto-wallet',
+        creditCard: offer.paymentMethod === 'credit-card',
+        debitCard: offer.paymentMethod === 'debit-card',
+        paypal: offer.paymentMethod === 'paypal',
+    };
+    res.render('crypto/edit', { offer, selectedPaymentMethod });
+});
+
 module.exports = router;
