@@ -4,10 +4,14 @@ const { generateToken } = require('../utils/generateToken');
 const { validateUserPassword } = require('../utils/bcryptHelper');
 
 exports.register = async (userData) => {
-    const user = await User.findOne({ username: userData.username });
-
-    if (user) {
+    const userWithUsername = await User.findOne({ username: userData.username });
+    if (userWithUsername) {
         throw new Error('Username already exists!');
+    }
+
+    const userWithEmail = await User.findOne({ email: userData.email });
+    if (userWithEmail) {
+        throw new Error('Email is already in use!');
     }
 
     const createdUser = await User.create(userData);
