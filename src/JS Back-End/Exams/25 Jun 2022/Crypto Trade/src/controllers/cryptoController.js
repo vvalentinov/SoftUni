@@ -73,4 +73,9 @@ router.get('/delete/:offerId', isAuthenticated, async (req, res) => {
     res.redirect('/crypto/catalog');
 });
 
+router.get('/search', async (req, res) => {
+    const offers = await cryptoService.getAll().lean();
+    res.render('crypto/search', { offers });
+});
+
 module.exports = router;
