@@ -78,4 +78,10 @@ router.get('/search', async (req, res) => {
     res.render('crypto/search', { offers });
 });
 
+router.post('/search', async (req, res) => {
+    const { name, paymentMethod } = req.body;
+    const offers = await cryptoService.searchOffer(name, paymentMethod).lean();
+    res.render('crypto/search', { offers });
+});
+
 module.exports = router;
