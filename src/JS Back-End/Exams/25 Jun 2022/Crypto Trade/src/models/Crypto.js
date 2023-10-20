@@ -30,6 +30,15 @@ const cryptoSchema = new mongoose.Schema({
         type: mongoose.Types.ObjectId,
         ref: 'User',
     },
+}, {
+    statics: {
+        findByNameAndPaymentMethod(name, paymentMethod) {
+            return this.find({
+                name: new RegExp(name, 'i'),
+                paymentMethod: new RegExp(paymentMethod, 'i')
+            });
+        }
+    }
 });
 
 const Crypto = mongoose.model('Crypto', cryptoSchema);
