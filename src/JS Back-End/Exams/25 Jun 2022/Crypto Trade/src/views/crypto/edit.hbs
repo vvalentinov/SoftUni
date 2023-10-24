@@ -21,6 +21,15 @@
                 <textarea name="cryptoDescription" id="description">{{offer.cryptoDescription}}</textarea>
                 <label>Payment method:</label>
                 <select id="payment" name="paymentMethod">
+                    <option value="crypto-wallet" {{#selected "crypto-wallet" offer.paymentMethod}}{{/selected}}>Crypto
+                        Wallet</option>
+                    <option value="credit-card" {{#selected "credit-card" offer.paymentMethod}}{{/selected}}>Credit Card
+                    </option>
+                    <option value="debit-card" {{#selected "debit-card" offer.paymentMethod}}{{/selected}}>Debit Card
+                    </option>
+                    <option value="paypal" {{#selected "paypal" offer.paymentMethod}}{{/selected}}>PayPal</option>
+                </select>
+                {{!-- <select id="payment" name="paymentMethod">
                     <option value="crypto-wallet" {{#if selectedPaymentMethod.cryptoWallet}}selected{{/if}}>Crypto
                         Wallet</option>
                     <option value="credit-card" {{#if selectedPaymentMethod.creditCard}}selected{{/if}}>Credit Card
@@ -28,7 +37,7 @@
                     <option value="debit-card" {{#if selectedPaymentMethod.debitCard}}selected{{/if}}>Debit Card
                     </option>
                     <option value="paypal" {{#if selectedPaymentMethod.paypal}}selected{{/if}}>PayPal</option>
-                </select>
+                </select> --}}
                 <input type="submit" id="btn" value="EDIT"></input>
             </form>
         </div>

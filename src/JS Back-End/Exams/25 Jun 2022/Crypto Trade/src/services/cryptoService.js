@@ -17,8 +17,3 @@ exports.editOffer = (offerId, offerData) => Crypto.findByIdAndUpdate(offerId, of
 exports.deleteOffer = (offerId) => Crypto.findByIdAndDelete(offerId);
 
 exports.searchOffer = (name, paymentMethod) => Crypto.findByNameAndPaymentMethod(name, paymentMethod);
-
-// exports.searchOffer = (name, paymentMethod) => Crypto.find({
-//     name: { '$regex': name, $options: 'i' },
-//     paymentMethod: { '$regex': paymentMethod, $options: 'i' },
-// });
