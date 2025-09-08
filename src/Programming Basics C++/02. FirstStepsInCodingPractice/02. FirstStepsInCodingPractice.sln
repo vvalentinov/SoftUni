@@ -5,6 +5,8 @@ VisualStudioVersion = 17.14.36414.22 d17.14
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "01. UsdToBgn", "01. UsdToBgn\01. UsdToBgn.vcxproj", "{FE367FA1-1612-4F08-8FE4-268857909DEE}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "02. RadiansToDegrees", "02. RadiansToDegrees\02. RadiansToDegrees.vcxproj", "{30717DD0-B818-430C-802F-5B7F1AC1AA1D}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x64 = Debug|x64
@@ -21,6 +23,14 @@ Global
 		{FE367FA1-1612-4F08-8FE4-268857909DEE}.Release|x64.Build.0 = Release|x64
 		{FE367FA1-1612-4F08-8FE4-268857909DEE}.Release|x86.ActiveCfg = Release|Win32
 		{FE367FA1-1612-4F08-8FE4-268857909DEE}.Release|x86.Build.0 = Release|Win32
+		{30717DD0-B818-430C-802F-5B7F1AC1AA1D}.Debug|x64.ActiveCfg = Debug|x64
+		{30717DD0-B818-430C-802F-5B7F1AC1AA1D}.Debug|x64.Build.0 = Debug|x64
+		{30717DD0-B818-430C-802F-5B7F1AC1AA1D}.Debug|x86.ActiveCfg = Debug|Win32
+		{30717DD0-B818-430C-802F-5B7F1AC1AA1D}.Debug|x86.Build.0 = Debug|Win32
+		{30717DD0-B818-430C-802F-5B7F1AC1AA1D}.Release|x64.ActiveCfg = Release|x64
+		{30717DD0-B818-430C-802F-5B7F1AC1AA1D}.Release|x64.Build.0 = Release|x64
+		{30717DD0-B818-430C-802F-5B7F1AC1AA1D}.Release|x86.ActiveCfg = Release|Win32
+		{30717DD0-B818-430C-802F-5B7F1AC1AA1D}.Release|x86.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
