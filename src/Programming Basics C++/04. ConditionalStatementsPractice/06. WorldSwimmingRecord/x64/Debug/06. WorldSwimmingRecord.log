@@ -1,0 +1,3 @@
+﻿  06. WorldSwimmingRecord.cpp
+D:\Programming\Repositories\SoftUni\src\Programming Basics C++\04. ConditionalStatementsPractice\06. WorldSwimmingRecord\06. WorldSwimmingRecord.cpp(20,19): warning C4244: 'initializing': conversion from 'double' to 'int', possible loss of data
+  06. WorldSwimmingRecord.vcxproj -> D:\Programming\Repositories\SoftUni\src\Programming Basics C++\04. ConditionalStatementsPractice\x64\Debug\06. WorldSwimmingRecord.exe
