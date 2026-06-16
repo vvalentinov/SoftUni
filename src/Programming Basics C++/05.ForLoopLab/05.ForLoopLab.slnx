@@ -7,4 +7,10 @@
   <Project Path="02. Numbers Nto1/02. Numbers Nto1.vcxproj" />
   <Project Path="03. Numbers 1toN with Step 3/03. Numbers 1toN with Step 3.vcxproj" />
   <Project Path="04. Even Powers of 2/04. Even Powers of 2.vcxproj" />
+  <Project Path="05. Character Sequence/05. Character Sequence.vcxproj" />
+  <Project Path="06. Vowels Sum/06. Vowels Sum.vcxproj" />
+  <Project Path="07. Sum Numbers/07. Sum Numbers.vcxproj" />
+  <Project Path="08. Number sequence/08. Number sequence.vcxproj" />
+  <Project Path="09. Left and Right Sum/09. Left and Right Sum.vcxproj" />
+  <Project Path="10. Odd Even Sum/10. Odd Even Sum.vcxproj" />
 </Solution>
