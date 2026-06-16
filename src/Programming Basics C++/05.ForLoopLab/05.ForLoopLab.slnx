@@ -1,0 +1,10 @@
+<Solution>
+  <Configurations>
+    <Platform Name="x64" />
+    <Platform Name="x86" />
+  </Configurations>
+  <Project Path="01. Numbers from 1 to 100/01. Numbers from 1 to 100.vcxproj" />
+  <Project Path="02. Numbers Nto1/02. Numbers Nto1.vcxproj" />
+  <Project Path="03. Numbers 1toN with Step 3/03. Numbers 1toN with Step 3.vcxproj" />
+  <Project Path="04. Even Powers of 2/04. Even Powers of 2.vcxproj" />
+</Solution>
