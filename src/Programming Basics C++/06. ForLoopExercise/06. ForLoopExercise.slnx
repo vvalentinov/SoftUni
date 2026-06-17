@@ -7,4 +7,5 @@
   <Project Path="02. Half Sum Element/02. Half Sum Element.vcxproj" />
   <Project Path="03. Histogram/03. Histogram.vcxproj" />
   <Project Path="04. Clever Lily/04. Clever Lily.vcxproj" />
+  <Project Path="05. Salary/05. Salary.vcxproj" />
 </Solution>
