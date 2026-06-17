@@ -8,4 +8,7 @@
   <Project Path="03. Histogram/03. Histogram.vcxproj" />
   <Project Path="04. Clever Lily/04. Clever Lily.vcxproj" />
   <Project Path="05. Salary/05. Salary.vcxproj" />
+  <Project Path="06. Oscars/06. Oscars.vcxproj" />
+  <Project Path="07. Trekking Mania/07. Trekking Mania.vcxproj" />
+  <Project Path="08. Tennis Ranklist/08. Tennis Ranklist.vcxproj" />
 </Solution>
