@@ -7,4 +7,7 @@
   <Project Path="02. Password/02. Password.vcxproj" />
   <Project Path="03. Sum Numbers/03. Sum Numbers.vcxproj" />
   <Project Path="04. Sequence 2k+1/04. Sequence 2k+1.vcxproj" />
+  <Project Path="05. Account Balance/05. Account Balance.vcxproj" />
+  <Project Path="06. Max Number/06. Max Number.vcxproj" />
+  <Project Path="07. Min Number/07. Min Number.vcxproj" />
 </Solution>
