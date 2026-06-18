@@ -10,4 +10,5 @@
   <Project Path="05. Account Balance/05. Account Balance.vcxproj" />
   <Project Path="06. Max Number/06. Max Number.vcxproj" />
   <Project Path="07. Min Number/07. Min Number.vcxproj" />
+  <Project Path="08. Graduation/08. Graduation.vcxproj" />
 </Solution>
