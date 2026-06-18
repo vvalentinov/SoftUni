@@ -1,0 +1,10 @@
+<Solution>
+  <Configurations>
+    <Platform Name="x64" />
+    <Platform Name="x86" />
+  </Configurations>
+  <Project Path="01. Read Text/01. Read Text.vcxproj" />
+  <Project Path="02. Password/02. Password.vcxproj" />
+  <Project Path="03. Sum Numbers/03. Sum Numbers.vcxproj" />
+  <Project Path="04. Sequence 2k+1/04. Sequence 2k+1.vcxproj" />
+</Solution>
