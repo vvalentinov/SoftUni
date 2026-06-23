@@ -1,1 +1,11 @@
-<Solution />
+<Solution>
+  <Configurations>
+    <Platform Name="x64" />
+    <Platform Name="x86" />
+  </Configurations>
+  <Project Path="01. Old Books/01. Old Books.vcxproj" />
+  <Project Path="02. Exam Preparation/02. Exam Preparation.vcxproj" />
+  <Project Path="03. Vacation/03. Vacation.vcxproj" />
+  <Project Path="04. Walking/04. Walking.vcxproj" />
+  <Project Path="05. Coins/05. Coins.vcxproj" />
+</Solution>
