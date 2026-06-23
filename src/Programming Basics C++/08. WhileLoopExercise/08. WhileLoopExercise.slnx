@@ -8,4 +8,6 @@
   <Project Path="03. Vacation/03. Vacation.vcxproj" />
   <Project Path="04. Walking/04. Walking.vcxproj" />
   <Project Path="05. Coins/05. Coins.vcxproj" />
+  <Project Path="06. Cake/06. Cake.vcxproj" />
+  <Project Path="07. Moving/07. Moving.vcxproj" />
 </Solution>
